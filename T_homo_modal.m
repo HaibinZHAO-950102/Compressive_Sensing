@@ -57,32 +57,35 @@ for n = 2 : N_time
     end
 end
 
-% figure
-% for n = 1 : 5 : N_time
-%     plot(x, f(n,:))
-%     ylim([-1 1])
-%     set(gca,'Fontsize',20)
-%     set(gca,'fontname','times new Roman')
-%     T = title('Temperature Distribution','fontsize',40);
-%     set(T,'Interpreter','latex')
-%     T = xlabel('$x$','fontsize',30);
-%     set(T,'Interpreter','latex')
-%     T = ylabel('$T$','fontsize',30);
-%     set(T,'Interpreter','latex')
-%     set(gcf,'outerposition',get(0,'screensize'));
-%     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-%     T = text(0.8,0.8,txt,'FontSize',30);
-%     set(T,'Interpreter','latex')
-%     drawnow
-%     frame=getframe(gcf);
-%     imind=frame2im(frame);
-%     [imind,cm] = rgb2ind(imind,256);
-% %     if n==1
-% %          imwrite(imind,cm,'Temperature_Distribution.gif','gif', 'Loopcount',inf,'DelayTime',1e-6);
-% %     else
-% %          imwrite(imind,cm,'Temperature_Distribution.gif','gif','WriteMode','append','DelayTime',1e-6);
-% %     end
-% end
+figure
+for n = 1 : 5 : N_time
+    plot(x, f(n,:))
+    ylim([-1 1])
+    set(gca,'Fontsize',20)
+    set(gca,'fontname','times new Roman')
+    T = title('Temperature Distribution','fontsize',40);
+    set(T,'Interpreter','latex')
+    T = xlabel('$x$','fontsize',30);
+    set(T,'Interpreter','latex')
+    T = ylabel('$T$','fontsize',30);
+    set(T,'Interpreter','latex')
+    set(gcf,'outerposition',get(0,'screensize'));
+    txt = ['$t = ',num2str((n-1)*step_time),'$'];
+    T = text(0.8,0.6,txt,'FontSize',30);
+    set(T,'Interpreter','latex')
+    txt = ['$N = ',num2str(N),'$'];
+    T = text(0.8,0.8,txt,'FontSize',30);
+    set(T,'Interpreter','latex')
+    drawnow
+    frame=getframe(gcf);
+    imind=frame2im(frame);
+    [imind,cm] = rgb2ind(imind,256);
+    if n==1
+         imwrite(imind,cm,'Temperature_Distribution.gif','gif', 'Loopcount',inf,'DelayTime',1e-6);
+    else
+         imwrite(imind,cm,'Temperature_Distribution.gif','gif','WriteMode','append','DelayTime',1e-6);
+    end
+end
 
 figure
 [X, Y] = meshgrid(x, t);

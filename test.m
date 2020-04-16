@@ -1,11 +1,11 @@
 clc
 clear
-printfigure = 0;
+printfigure = 1;
 
 Length = 1;  % length of the rod
-Time = 0.001;  % duration
+Time = 2e-4;  % duration
 step_length = 0.001;
-step_time = 0.00001;
+step_time = 5e-07;
 x = 0 : step_length : Length;
 t = 0 : step_time : Time;
 N_length = length(x);
@@ -13,7 +13,7 @@ N_time = length(t);
 
 k = 10;  % thermal conductivity in cm^2/100s
 
-N = 40;  % order of eigen functions
+N = 200;  % order of eigen functions
 lambda = 0 : pi / Length : N * pi / Length;  % frequence of eigen functions
 f = zeros(N_time, N_length);  % temperature
 % f(1,:) = sin(x / Length * 2 * pi);
@@ -34,6 +34,8 @@ for i = 2 : N + 1
     end
 end
 
+
+
 for i = 1 : N + 1
     T(i, 1) = 0;
     for n = 1 : N_length
@@ -52,7 +54,7 @@ for n = 2 : N_time
 end
 
 figure
-for n = 1 : N_time
+for n = 1:5 : N_time
     plot(x, f(n,:))
     ylim([0 1])
     set(gca,'Fontsize',20)
@@ -65,7 +67,10 @@ for n = 1 : N_time
     set(T,'Interpreter','latex')
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    T = text(0.2,0.8,txt,'FontSize',30);
+    T = text(0.1,0.8,txt,'FontSize',30);
+    set(T,'Interpreter','latex')
+    txt = ['$N = ',num2str(N),'$'];
+    T = text(0.1,0.9,txt,'FontSize',30);
     set(T,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -78,6 +83,10 @@ for n = 1 : N_time
     end
 end
 
+figure
+[X, Y] = meshgrid(x, t);
+mesh(X,Y,f)
+setmesh('Tempreature Distribution','$x$','$t$','$T$','T-t-x_2',printfigure)
 
 
 
