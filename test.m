@@ -3,9 +3,9 @@ clear
 printfigure = 0;
 
 Length = 1;  % length of the rod
-Time = 0.05;  % duration
+Time = 0.001;  % duration
 step_length = 0.001;
-step_time = 0.0001;
+step_time = 0.00001;
 x = 0 : step_length : Length;
 t = 0 : step_time : Time;
 N_length = length(x);
@@ -13,11 +13,11 @@ N_time = length(t);
 
 k = 10;  % thermal conductivity in cm^2/100s
 
-N = 10;  % order of eigen functions
+N = 40;  % order of eigen functions
 lambda = 0 : pi / Length : N * pi / Length;  % frequence of eigen functions
 f = zeros(N_time, N_length);  % temperature
-f(1,:) = sin(x / Length * 2 * pi);
-% f(1,:) = floor(x * 5) / 5;
+% f(1,:) = sin(x / Length * 2 * pi);
+f(1,:) = floor(x * 5) / 5;
 phi = zeros(N + 1, N_length);  % eigen function
 T = zeros(N + 1, N_time);  % weights
 
@@ -52,9 +52,9 @@ for n = 2 : N_time
 end
 
 figure
-for n = 1 : 5 : N_time
+for n = 1 : N_time
     plot(x, f(n,:))
-    ylim([-1 1])
+    ylim([0 1])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
     T = title('Temperature Distribution','fontsize',40);
@@ -65,16 +65,16 @@ for n = 1 : 5 : N_time
     set(T,'Interpreter','latex')
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    T = text(0.8,0.8,txt,'FontSize',30);
+    T = text(0.2,0.8,txt,'FontSize',30);
     set(T,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);
     [imind,cm] = rgb2ind(imind,256);
     if n==1
-         imwrite(imind,cm,'Temperature_Distribution.gif','gif', 'Loopcount',inf,'DelayTime',1e-6);
+         imwrite(imind,cm,'Temperature_Distribution_2.gif','gif', 'Loopcount',inf,'DelayTime',1e-6);
     else
-         imwrite(imind,cm,'Temperature_Distribution.gif','gif','WriteMode','append','DelayTime',1e-6);
+         imwrite(imind,cm,'Temperature_Distribution_2.gif','gif','WriteMode','append','DelayTime',1e-6);
     end
 end
 
