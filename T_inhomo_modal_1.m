@@ -1,26 +1,28 @@
 clc
 clear
-printfigure = 1;
+close all
 
-Length = 1;  % length of the rod
-Time = 5;  % duration
-step_length = 0.001;
+printfigure = 0;
+
+Length = 10;  % Stablaenge
+Time = 5;   % Zetiraum
+step_length = 0.01;
 step_time = 0.01;
 x = 0 : step_length : Length;
 t = 0 : step_time : Time;
 N_length = length(x);
 N_time = length(t);
 
-k = 0.1;  % thermal conductivity in cm^2/s
-a = 0.2;  % heat radiation factor
+k = 0.1;  % Waermeleitfaehigkeit in cm^2/s
+a = 0.1;  % Waermeabstralungsfaktor
 
-N = 10;  % order of eigen functions
-lambda = 0 : pi / Length : N * pi / Length;  % frequence of eigen functions
-f = zeros(N_time, N_length);  % temperature
+N = 10;  % Grad
+lambda = 0 : pi / Length : N * pi / Length;
+f = zeros(N_time, N_length); % Temperaturmatrix
 f(1,:) = sin(x / Length * 2 * pi) + 1;
 % f(1,:) = floor(x * 5) / 5;
-phi = zeros(N + 1, N_length);  % eigen function
-T = zeros(N + 1, N_time);  % weights
+phi = zeros(N + 1, N_length);  % Eigenfunktionen
+T = zeros(N + 1, N_time);  % Gewichtung
 
 plot(x,f(1,:))
 setplt('Initial Condition','$x$','$T$','TV_inhomo_modal_inital_condition',printfigure)
@@ -38,7 +40,7 @@ for i = 1 : N + 1
     hold on
 end
 txt = ['$N = ',num2str(N),'$'];
-TEXT = text(0.8,1.2,txt,'FontSize',30);
+TEXT = text(8,0.4,txt,'FontSize',30);
 set(TEXT,'Interpreter','latex')
 setplt('Eigenfunctions','$x$','$value$','TV_inhomo_modal_Eigenfunctions',printfigure)
 
@@ -63,8 +65,8 @@ for n = 2 : N_time
 end
 
 figure
-for n = 1 : 5 : N_time
-    plot(x, f(n,:))
+for n = 1 : 10 : N_time
+    plot(x, f(n,:),'LineWidth',8)
     ylim([0 2])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
@@ -76,10 +78,10 @@ for n = 1 : 5 : N_time
     set(T,'Interpreter','latex')
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    T = text(0.8,0.6,txt,'FontSize',30);
+    T = text(8,1.6,txt,'FontSize',30);
     set(T,'Interpreter','latex')
     txt = ['$N = ',num2str(N),'$'];
-    T = text(0.8,0.8,txt,'FontSize',30);
+    T = text(8,1.8,txt,'FontSize',30);
     set(T,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
