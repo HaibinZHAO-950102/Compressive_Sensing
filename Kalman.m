@@ -2,35 +2,40 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('Messwerte')
 
-S = [1,2,4,6,8,11];  % benutzte Sensoren
+% S = [1,4,7,11];  % benutzte Sensoren
+% S = [1,3,5,7,9,11];  % benutzte Sensoren
+S = [1,2,3,4,5,6,7,8,9,10,11];  % benutzte Sensoren
 
-N = length(S);  % Grad
+N = length(S);  % Anzahl der Messungen
+order = N - 1;  % Grad
+G = order + 1;      % Grad + 1, anschliesslich 0 Grad.
+
 N_time = size(m,1);
-H = zeros(N, N);  % Eigenfunktionen
-lambda = 0 : N - 1;
+H = zeros(N, G);  % Eigenfunktionen
+lambda = 0 : order;
 lambda = lambda * pi / Length;
 
 H(:, 1) = sqrt(1 / Length);
-for i = 2 : N
+for i = 2 : G
     for n = 1 : N
         H(n, i) = sqrt(2 / Length) * cos(lambda(i) * p(S(n)));
     end
 end
 
-A = zeros(N);
-for i = 1 : N
+A = zeros(G);
+for i = 1 : G
     A(i,i) = 1 - step_time * k * lambda(i)^2;
 end
 
-T = zeros(N, N_time);
-Ce = zeros(N, N, N_time);
-Ce(:,:,1) = eye(N) * 1000000000000;
-Cv = eye(N) * 1;  % Systemrauschen
-Cw = eye(N) * 1;  % Messunsicherheit
+T = zeros(G, N_time);
+Ce = zeros(G, G, N_time);
+Ce(:,:,1) = eye(G) * 1000000000000;
+Cv = eye(N) * 1;  % Messunsicherheit
+Cw = eye(G) * 1;  % Systemrauschen
 for t = 2 : N_time
     Tp = A * T(:, t-1);
     Cp = A * Ce(:,:, t-1) * A' + Cw;
@@ -43,15 +48,15 @@ step_length = 0.01;
 x = 0 : step_length : Length;
 N_length = length(x);
 f_e = zeros(N_time, N_length);  % Temperaturmatrix
-phi = zeros(N, N_length);  % Eigenfunktionen
+phi = zeros(G, N_length);  % Eigenfunktionen
 phi(1,:) = sqrt(1 / Length);
-for i = 2 : N
+for i = 2 : G
     for n = 1 : N_length
         phi(i, n) = sqrt(2 / Length) * cos(lambda(i) * x(n));
     end
 end
 for n = 1 : N_time
-    for i = 1 : N
+    for i = 1 : G
         f_e(n,:) = f_e(n,:) + T(i,n) * phi(i,:);
     end
 end
@@ -90,10 +95,11 @@ for n = 1 : 40 : N_time
     frame=getframe(gcf);
     imind=frame2im(frame);
     [imind,cm] = rgb2ind(imind,256);
+    name = ['Kalman_',num2str(N),'.gif'];
     if n==1
-         imwrite(imind,cm,'Kalman_6.gif','gif', 'Loopcount',inf,'DelayTime',1e-6);
+         imwrite(imind,cm,name,'gif', 'Loopcount',inf,'DelayTime',1e-6);
     else
-         imwrite(imind,cm,'Kalman_6.gif','gif','WriteMode','append','DelayTime',1e-6);
+         imwrite(imind,cm,name,'gif','WriteMode','append','DelayTime',1e-6);
     end
 end
 
