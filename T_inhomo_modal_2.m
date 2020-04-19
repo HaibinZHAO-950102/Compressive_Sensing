@@ -45,17 +45,12 @@ TEXT = text(8,0.4,txt,'FontSize',30);
 set(TEXT,'Interpreter','latex')
 setplt('Eigenfunctions','$x$','$value$','TV_inhomo_modal_Eigenfunctions',0)
 
-u(:,301) = 10 * sin(t - pi / 4);
-u(:,501) = -20 * sin(t);
-u(:,701) = 1 * t;
+u(:,301) = 0.1 * sin(t - pi / 4);
+u(:,501) = -0.2 * sin(t);
+u(:,701) = 0.01 * t;
 
 for i = 1 : N + 1
-    for j = 1 : N_time
-        U(i, j) = 0;
-        for n = 1 : N_length
-            U(i, j) = U(i, j) + u(j, n) * phi(i, n) * step_length;
-        end
-    end
+    U(i,:) = u(:,301) * phi(i,301) + u(:,501) * phi(i,501) + u(:,701) * phi(i,701);
 end
 
 for i = 1 : N + 1
@@ -79,7 +74,7 @@ end
 
 figure
 for n = 1 : 40 : N_time
-    plot(x, f(n,:),'LineWidth',8)
+    plot(x, f(n,:),'LineWidth',5)
     ylim([0 2])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
@@ -124,8 +119,12 @@ for i = 1 : (N_length-1)/10 : N_length
     m(:,index) = f(:,i);
     index = index + 1;
 end
-save('Messwerte.mat','m','p','step_time','k','Length','f')
 
+f_modal_2 = f;
+x_modal_2 = x;
+save('f_modal_2.mat','x_modal_2','f_modal_2')
+
+save('Messwerte.mat','m','p','step_time','k','Length','f')
 
 
 

@@ -33,6 +33,7 @@ for n = 2 : N_length - 1
         H(n+N_length*(m-1),n+N_length*(m-1)+1) = B;
     end
 end
+
 length_edge = [1, N_length];
 for n = 1 : 2
     for m = 2 : N_time

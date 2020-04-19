@@ -66,7 +66,7 @@ end
 
 figure
 for n = 1 : 10 : N_time
-    plot(x, f(n,:),'LineWidth',8)
+    plot(x, f(n,:),'LineWidth',5)
     ylim([0 2])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
@@ -101,6 +101,9 @@ figure
 mesh(X,Y,f)
 setmesh('Tempreature Distribution','$x$','$t$','$T$','TV_inhomo_modal_Ttx_1',printfigure)
 
+f_modal_1 = f;
+x_modal_1 = x;
+save('f_modal_1.mat','x_modal_1','f_modal_1')
 
 
 
