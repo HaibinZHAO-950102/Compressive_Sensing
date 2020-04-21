@@ -33,7 +33,7 @@ end
 
 T = zeros(G, N_time);
 Ce = zeros(G, G, N_time);
-Ce(:,:,1) = eye(G) * 1000000000000;
+Ce(:,:,1) = eye(G) * 10 ^ 10;
 Cv = eye(N) * 1;  % Messunsicherheit
 Cw = eye(G) * 1;  % Systemrauschen
 for t = 2 : N_time

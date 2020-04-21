@@ -56,10 +56,12 @@ for i = 1 : N + 1
 end
 for i = 1 : N + 1
     for n = 2 : N_time
-        T(i, n) = (1 - step_time * k * lambda(i)^2)^n * T(i, 1);
+        T(i, n) = (1 - step_time * k * lambda(i)^2)^(n - 1) * T(i, 1);
     end
 end
-for n = 2 : N_time
+
+f = zeros(N_time, N_length);  % Temperaturmatrix
+for n = 1 : N_time
     for i = 1 : N + 1
         f(n,:) = f(n,:) + T(i,n) * phi(i,:);
     end
@@ -69,21 +71,14 @@ figure
 for n = 1 : 40 : N_time
     plot(x, f(n,:),'LineWidth',5)
     ylim([-1 1])
-    set(gca,'Fontsize',20)
-    set(gca,'fontname','times new Roman')
-    T = title('Temperature Distribution','fontsize',40);
-    set(T,'Interpreter','latex')
-    T = xlabel('$x$','fontsize',30);
-    set(T,'Interpreter','latex')
-    T = ylabel('$T$','fontsize',30);
-    set(T,'Interpreter','latex')
+    setplt('Temperature Distribution','$x$','$T$','TV_homo_modal_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    T = text(8,0.6,txt,'FontSize',30);
-    set(T,'Interpreter','latex')
+    TEXT = text(8,0.6,txt,'FontSize',30);
+    set(TEXT,'Interpreter','latex')
     txt = ['$N = ',num2str(N),'$'];
-    T = text(8,0.8,txt,'FontSize',30);
-    set(T,'Interpreter','latex')
+    TEXT = text(8,0.8,txt,'FontSize',30);
+    set(TEXT,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);

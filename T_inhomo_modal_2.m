@@ -66,7 +66,8 @@ for i = 1 : N + 1
     end
 end
 
-for n = 2 : N_time
+f = zeros(N_time, N_length);  % Temperaturmatrix
+for n = 1 : N_time
     for i = 1 : N + 1
         f(n,:) = f(n,:) + T(i,n) * phi(i,:);
     end

@@ -53,12 +53,13 @@ end
 
 for i = 1 : N + 1
     for n = 2 : N_time
-        T(i, n) = (1 - step_time * k * lambda(i)^2 - a * step_time)^n * T(i, 1);
+        T(i, n) = (1 - step_time * k * lambda(i)^2 - a * step_time)^(n - 1) * T(i, 1);
     end
 end
 
 
-for n = 2 : N_time
+f = zeros(N_time, N_length);  % Temperaturmatrix
+for n = 1 : N_time
     for i = 1 : N + 1
         f(n,:) = f(n,:) + T(i,n) * phi(i,:);
     end
