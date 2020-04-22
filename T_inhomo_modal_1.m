@@ -24,7 +24,7 @@ f(1,:) = sin(x / Length * 2 * pi) + 1;
 phi = zeros(N + 1, N_length);  % Eigenfunktionen
 T = zeros(N + 1, N_time);  % Gewichtung
 
-plot(x,f(1,:))
+plot(x,f(1,:),'LineWidth',5)
 setplt('Initial Condition','$x$','$T$','TV_inhomo_modal_inital_condition',printfigure)
 
 phi(1,:) = sqrt(1 / Length);

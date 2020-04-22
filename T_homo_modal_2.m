@@ -7,7 +7,7 @@ printfigure = 0;
 Length = 10;  % Stablaenge
 Time = 0.5;   % Zetiraum
 step_length = 0.01;
-step_time = 2.5e-4;
+step_time = 5e-4;
 x = 0 : step_length : Length;
 t = 0 : step_time : Time;
 N_length = length(x);
@@ -28,7 +28,7 @@ step_time_max = 2 / k / lambda(end)^2;
 if step_time > step_time_max
     ['step_time should be under ',num2str(step_time_max)]
 end
-plot(x,f(1,:))
+plot(x,f(1,:),'LineWidth',5)
 setplt('Initial Condition','$x$','$T$','TV_homo_modal_inital_condition_2',printfigure)
 
 phi(1,:) = sqrt(1 / Length);
@@ -68,7 +68,7 @@ for n = 1 : N_time
 end
 
 figure
-for n = 1: 40 : N_time
+for n = 1: 20 : N_time
     plot(x, f(n,:),'LineWidth',5)
     ylim([0 1])
     xlim([0 10])

@@ -28,7 +28,7 @@ if step_time > step_time_max
     ['step_time should be under ',num2str(step_time_max)]
 end
 
-plot(x,f(1,:))
+plot(x,f(1,:),'LineWidth',5)
 setplt('Initial Condition','$x$','$T$','TV_homo_modal_inital_condition_1',printfigure)
 
 phi(1,:) = sqrt(1 / Length);

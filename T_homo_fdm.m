@@ -1,7 +1,7 @@
 clc
 clear
 
-printfigure = 1;
+printfigure = 0;
 
 Length = 10;  % Stablaenge
 Time = 200;   % Zetiraum

@@ -25,7 +25,7 @@ T = zeros(N + 1, N_time);  % Gewichtung
 u = zeros(N_time, N_length);  % Anregung
 U = zeros(N + 1, N_time);  % Anregungsgewichtung
 
-plot(x,f(1,:))
+plot(x,f(1,:),'LineWidth',5)
 setplt('Initial Condition','$x$','$T$','TV_inhomo_modal_inital_condition',0)
 
 phi(1,:) = sqrt(1 / Length);
