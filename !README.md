@@ -3,7 +3,7 @@ Master Degree Thesis: Compressive Sensing + Filtering
 
 ---------------------------------------------------
 ## 16.04.2020  
-Today i wrote T_homo_modal_1.m, T_homo_modal_2.m, T_inhomo_modal_1.m, T_inhomo_modal_2.m to simulate the temperature distribution on a rod, using momodal analysis.  
+Today i wrote T_homo_modal_1.m, T_homo_modal_2.m, T_inhomo_modal_1.m, T_inhomo_modal_2.m to simulate the temperature distribution on a rod, using modal analysis.  
 
 ---------------------------------------------------
 ## 17.04.2020  
@@ -33,5 +33,15 @@ x = [0, 3, 0, 0, 0]
 Tomorrow I will study the two-dimensional distribution of temperature
 
 ----------------------------------------------------------
+## 21.04.2020
+today i derived the formula of Modal Analysis in 2D homogenous condition. It is more complicated and need more calculating time.  
+then i wrote a function to realize it, and tried a example.
+  
+-------------------------------------------------------------
+## 22.04.2020
+today i derived the 2D inhomogenous situation using modal analysis. and wrote a function to realize it.  
+in addition I tried 2 examples.  
+tomorrow i will solve the same problem using FDM  
+-------------------------------------------------------------
 
 
