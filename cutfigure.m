@@ -1,4 +1,4 @@
-function Inew = cutfigure(filename,trans)
+function Inew = cutfigure(filename)
 ['Processing "',filename,'" ....']
 I = imread(filename);
 Ig = rgb2gray(I);
