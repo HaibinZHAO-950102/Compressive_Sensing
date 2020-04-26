@@ -1,5 +1,6 @@
 clc
 clear
+close all
 
 printfigure = 0;
 

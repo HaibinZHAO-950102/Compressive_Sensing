@@ -3,7 +3,7 @@ clear
 close all
 
 cut_figure = 1;
-cut_gif = 1;
+cut_gif = 0;
 
 files = dir('E:\Deutschland\Karlsruher Institut f¨¹r Technologie\4. Semester\Abschlussarbeit\Codes Compressive');
 

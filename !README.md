@@ -42,6 +42,20 @@ then i wrote a function to realize it, and tried a example.
 today i derived the 2D inhomogenous situation using modal analysis. and wrote a function to realize it.  
 in addition I tried 2 examples.  
 tomorrow i will solve the same problem using FDM  
+
 -------------------------------------------------------------
+## 24.04.2020  
+today i wrote some function to realize 2D tempreature distribution in homogenous condition. Using FDM  
+
+-------------------------------------------------------------
+## 25.04.2020  
+today i realized 2D inhomogenous situation, using FDM  
+
+-------------------------------------------------------------
+## 26.04.2020  
+today i begined to write some basic functions in Compressive Sensing, e.g. L1,L0,L2 Norm, something about sampling and so on.
+
+
+
 
 
