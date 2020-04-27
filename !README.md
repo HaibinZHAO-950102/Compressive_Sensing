@@ -53,7 +53,12 @@ today i realized 2D inhomogenous situation, using FDM
 
 -------------------------------------------------------------
 ## 26.04.2020  
-today i begined to write some basic functions in Compressive Sensing, e.g. L1,L0,L2 Norm, something about sampling and so on.
+today i begined to write some basic functions in Compressive Sensing, e.g. L1,L0,L2 Norm, something about sampling and so on.  
+
+-------------------------------------------------------------
+## 27.04.2020  
+today i realized Compressive Sensing and it's Reconstruction for 1D Signal, tomorrow i will do some work for 2D Signal (e.g. for Image reconstruction)  
+
 
 
 

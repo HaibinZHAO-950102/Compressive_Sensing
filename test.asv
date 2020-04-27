@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 dt = 0.0001;
 t = 0 : dt : 3;
@@ -27,32 +27,25 @@ xlim([-50 50])
 setplt('Signal_Spectrum','$f$','$|A(f)|$','Signal_Spectrum',printfigure)
 
 sampling_frequence = 50;
-sampling_number = 3 * sampling_frequence;
-sample_index_shannon = ceil(linspace(1, N + 1, sampling_number));
-t_shannon = t(sample_index_shannon);
-y_shannon = y(sample_index_shannon);
-
-figure
-plot(t,y,'k','LineWidth',2)
-hold on
-plot(t_shannon,y_shannon,'b-','LineWidth',2)
-hold on
-plot(t_shannon,y_shannon,'r.','markersize',30)
-setplt('Traditional Sampling','$t$','$y(t)$','Signal_traditional_sampling',printfigure)
+sample_index_shannon = 1 : 
+t_shannon = 0 : 3/sampling_frequence :3;
+y_shannon = 
 
 
-CS_sampling_number = ceil(sampling_number * 0.2);
+
+
+CS_sampling_number = 3 * 50;
+CS_sampling_number = ceil(CS_sampling_number * 0.2);
 CS_sample_index = sort(ceil(rand(1, CS_sampling_number) * N));
 t_sample = t(CS_sample_index);
 y_sample = y(CS_sample_index);
 
-figure
 plot(t,y,'k','LineWidth',2)
 hold on
 plot(t_sample,y_sample,'b-','LineWidth',2)
 hold on
 plot(t_sample,y_sample,'r.','markersize',30)
-setplt('CS Sampling','$t$','$y(t)$','Signal_CS_sampling',printfigure)
+setplt('Sampling','$t$','$y(t)$','Signal_sampling',printfigure)
 
 Fourier_matrix = zeros(CS_sampling_number, 31);
 for i = 1 : 31
@@ -63,7 +56,7 @@ e = 0.0001;
 fun = @(a) sum(abs(a));
 con = @(a)constraint_1(Fourier_matrix,a,y_sample',e);
 a = fmincon(fun,ones(31,1),[],[],[],[],[],[],con);
-threshold = floor(log(1 / (sum(abs(a)) * 0.01)) / log(10));
+threshold = floor(log(1 / (sum(a) * 0.03)) / log(10));
 a = round(a,threshold);
 
 y_re = zeros(1,length(t));
