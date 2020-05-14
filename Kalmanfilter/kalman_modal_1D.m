@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('Messwerte')
 
@@ -62,7 +62,7 @@ for n = 1 : N_time
 end
 
 figure
-for n = 1 : 40 : N_time
+for n = 1 : 400 : N_time
     clf
     plot(x, f(n,:),'k-','LineWidth',5)
     hold on
@@ -71,7 +71,7 @@ for n = 1 : 40 : N_time
     plot(p(S),f(n,p(S)/step_length+1),'r.','Markersize',40)
     legend('TV Real','TV Estimated','Measure Points')
     xlim([0 10])
-    ylim([0 2])
+    ylim([-0.5 2.5])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
     T = title('Temperature Distribution','fontsize',40);
@@ -101,6 +101,6 @@ for n = 1 : 40 : N_time
     end
 end
 
-
-
+f_e_kalman_6 = f_e;
+save('f_e_kalman_6.mat','f_e_kalman_6')
 

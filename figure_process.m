@@ -3,9 +3,9 @@ clear
 close all
 
 cut_figure = 1;
-cut_gif = 0;
+cut_gif = 1;
 
-files = dir('E:\Deutschland\Karlsruher Institut f¨¹r Technologie\4. Semester\Abschlussarbeit\Codes Compressive');
+files = dir('E:\Deutschland\Karlsruher Institut f¨¹r Technologie\4. Semester\Compressive Sensing + Filterung\Codes Compressive');
 
 if cut_figure == 1
     for i = 1 : size(files,1)
