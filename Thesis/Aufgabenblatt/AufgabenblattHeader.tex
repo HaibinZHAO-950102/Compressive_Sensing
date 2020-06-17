@@ -32,6 +32,11 @@
   \newcommand{\mitarbeitername}{#2}%
 }
 
+\newcommand{\MitarbeiterB}[2][]{%
+  \newcommand{\mitarbeitertitelB}{#1\ }%
+  \newcommand{\mitarbeiternameB}{#2}%
+}
+
 \newcommand{\Student}[2][]{%
   \newcommand{\studenttitel}{#1\ }%
   \newcommand{\studentname}{#2}%
@@ -46,6 +51,14 @@
 
 \def\Arbeitsart #1 {% 
   \def\art {#1}
+}
+
+\def\Ziel #1 {% 
+	\def\ziel {#1}
+}
+
+\def\Ganttchart #1 {% 
+	\def\ganttchart {#1}
 }
 
 \newenvironment{aufgaben}[0]{\textbf{Aufgaben:}\\\vspace*{-10mm}\begin{itemize*}}{\end{itemize*}}
@@ -66,6 +79,12 @@
       \textbf{\arbeittitel}}
   \end{center}
   \bigskip
+  Das Ziel der Arbeit ist
+  
+  \centering\textbf{\ziel.}
+  
+  \justifying
+  \setlength{\parindent}{0pt}
 }			
 
 \def\Aufgaben #1{%
@@ -73,6 +92,7 @@
 }
 
 \def\Ende{%
+  \includegraphics[width=\textwidth]{\ganttchart}	
   \vfill
   \hspace{-\parindent}%
   \begin{tabularx}{\textwidth}{lXlX}
@@ -80,7 +100,7 @@
     \textbf{Bearbeiter:} &\textbf{\studenttitel\studentname} &
     \textbf{Matrikelnummer: \matrikelnr}
     \\\ \\
-    \textbf{Betr. Mitarbeiter:}&\multicolumn{2}{l}{\textbf{\mitarbeitertitel\mitarbeitername}}\\
+    \textbf{Betr. Mitarbeiter:}&\multicolumn{2}{l}{\textbf{\mitarbeitertitel\mitarbeitername}, \textbf{\mitarbeitertitelB\mitarbeiternameB}}\\
     \textbf{Referent:}& \multicolumn{2}{l}{\textbf{\betreuertitel\betreuername}}\\
     \ \\\end{tabularx}
   \begin{tabular}{lr}
@@ -97,7 +117,7 @@
   \noindent\begin{tabularx}{1.0\linewidth}[h]{cXcXc}
     \underline{\hspace{4cm}}&\ &\underline{\hspace{4.5cm}}
     &\ &\underline{\hspace{4cm}}\\
-    \emph{\studentname} && \emph{\mitarbeitername} && \emph{\betreuername}
+    \emph{\studentname} && \emph{\mitarbeitername, \mitarbeiternameB} && \emph{\betreuername}
   \end{tabularx}  
 
 }
