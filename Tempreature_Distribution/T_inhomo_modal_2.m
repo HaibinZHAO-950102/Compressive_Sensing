@@ -15,7 +15,7 @@ N_time = length(t);
 
 k = 0.1; % Waermeleitfaehigkeit in cm^2/s
 
-N = 10;  % Grad
+N = 50;  % Grad
 lambda = 0 : pi / Length : N * pi / Length;
 f = zeros(N_time, N_length);  % Temperaturmatrix
 f(1,:) = sin(x / Length * 2 * pi) + 1;
@@ -74,24 +74,24 @@ for n = 1 : N_time
 end
 
 figure
-for n = 1 : 40 : N_time
+for n = 1 : (N_time-1)/50 : N_time
     plot(x, f(n,:),'LineWidth',5)
     ylim([0 2])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
-    T = title('Temperature Distribution','fontsize',40);
-    set(T,'Interpreter','latex')
-    T = xlabel('$x$','fontsize',30);
-    set(T,'Interpreter','latex')
-    T = ylabel('$T$','fontsize',30);
-    set(T,'Interpreter','latex')
+    TEXT = title('Temperature Distribution','fontsize',40);
+    set(TEXT,'Interpreter','latex')
+    TEXT = xlabel('$x$','fontsize',30);
+    set(TEXT,'Interpreter','latex')
+    TEXT = ylabel('$T$','fontsize',30);
+    set(TEXT,'Interpreter','latex')
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    T = text(8,1.6,txt,'FontSize',30);
-    set(T,'Interpreter','latex')
+    TEXT = text(8,1.6,txt,'FontSize',30);
+    set(TEXT,'Interpreter','latex')
     txt = ['$N = ',num2str(N),'$'];
-    T = text(8,1.8,txt,'FontSize',30);
-    set(T,'Interpreter','latex')
+    TEXT = text(8,1.8,txt,'FontSize',30);
+    set(TEXT,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);
@@ -126,8 +126,3 @@ x_modal_2 = x;
 save('f_modal_2.mat','x_modal_2','f_modal_2')
 
 save('Messwerte.mat','m','p','step_time','k','Length','f')
-
-
-
-
-

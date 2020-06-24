@@ -2,13 +2,13 @@ clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('Messwerte')
 
 % S = [1,4,7,11];  % benutzte Sensoren
-% S = [1,3,5,7,9,11];  % benutzte Sensoren
-S = [1,2,3,4,5,6,7,8,9,10,11];  % benutzte Sensoren
+S = [1,3,5,7,9,11];  % benutzte Sensoren
+% S = [1,2,3,4,5,6,7,8,9,10,11];  % benutzte Sensoren
 
 N = length(S);  % Anzahl der Messungen
 order = N - 1;  % Grad
@@ -62,7 +62,7 @@ for n = 1 : N_time
 end
 
 figure
-for n = 1 : 400 : N_time
+for n = 1 : (N_time-1)/10 : N_time
     clf
     plot(x, f(n,:),'k-','LineWidth',5)
     hold on
@@ -101,6 +101,6 @@ for n = 1 : 400 : N_time
     end
 end
 
-f_e_kalman_6 = f_e;
-save('f_e_kalman_6.mat','f_e_kalman_6')
+f_e_kalman_11 = f_e;
+save('f_e_kalman_11.mat','f_e_kalman_11')
 

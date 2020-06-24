@@ -1,7 +1,7 @@
 clc
 clear
 close all
-printfigure = 1;
+printfigure = 0;
 
 A = diag(ones(100,1)*0.995);
 for i = 1 : 99

@@ -1,65 +1,47 @@
 clc
 clear
-close all
+load('Messwerte.mat')
 
-printfigure = 0;
+% 'db1' or 'haar', 'db2', ... ,'db10', ... , 'db45'
+% 'coif1', ... , 'coif5'
+% 'sym2', ... , 'sym8', ... ,'sym45'
+% 'bior1.1', 'bior1.3', 'bior1.5'
+% 'bior2.2', 'bior2.4', 'bior2.6', 'bior2.8'
+% 'bior3.1', 'bior3.3', 'bior3.5', 'bior3.7'
+% 'bior3.9', 'bior4.4', 'bior5.5', 'bior6.8'
+% 'rbio1.1', 'rbio1.3', 'rbio1.5'
+% 'rbio2.2', 'rbio2.4', 'rbio2.6', 'rbio2.8'
+% 'rbio3.1', 'rbio3.3', 'rbio3.5', 'rbio3.7'
+% 'rbio3.9', 'rbio4.4', 'rbio5.5', 'rbio6.8'
 
-I_origin = imread('Image.png');
-I = imresize(I_origin,1/64);
-imshow(I)
+y = f(end,1:end-1);
+x = 0 : 0.01 : 10-0.001;
+N = length(y);
 
-X = size(I,1);
-Y = size(I,2);
-N = X * Y;
+Psi = DWT(N, 'haar')^-1;
 
-I_vector = reshape(I, N, 1);
+M = 100;
+sampling_index = sort(ceil(rand(1,M)*N));
 
-sampling_number = ceil(N * 0.5);
-
-P_sampling = sort(ceil(rand(sampling_number, 1) * N));
-
-I_sampling = I_vector(P_sampling);
-
-I_sampling_2D = ones(N, 1) * 255;
-I_sampling_2D(P_sampling) = I_vector(P_sampling);
-I_sampling_2D = reshape(I_sampling_2D, X, Y);
-
-figure
-imshow(I_sampling_2D,[])
-if printfigure == 1
-    imwrite(I, 'Image_downsampling.png');
-    imwrite(I_sampling_2D / 255, 'Image_Sampling.png');
+Phi = zeros(M,N);
+for i = 1 : M
+    Phi(i,sampling_index(i)) = 1;
 end
 
-psi_x = idct(eye(X));
-psi_y = idct(eye(Y));
-
-Psi = kron(psi_y,psi_x);
-Phi = zeros(sampling_number, size(I,1) * size(I,2));
-for i = 1 : sampling_number
-    Phi(i,P_sampling(i)) = 1;
-end
 A = Phi * Psi;
+y_sampling = y(sampling_index);
 
+e = 0.01;
 cvx_begin
-    variable a(N, 1)
+    variable a(N,1)
     minimize(norm(a,1))
     subject to
-        A * a - double(I_sampling) == zeros(size(A,1),1)
+        norm(A * a - y_sampling') <= e
 cvx_end
 
-a_2D = reshape(a,X,Y);
-I_re = idct2(a_2D);
-I_re = I_re / max(max(I_re));
-figure
-imshow(I_re,[])
-if printfigure == 1
-    imwrite(I_re, 'Image_reconstruction.png');
-end
-     
-                
-                
-                
-                
-                
-
+y_re = Psi * a;
+plot(x,y)
+hold on
+plot(x,y_re)
+hold on
+plot(x(sampling_index),y_sampling,'*')

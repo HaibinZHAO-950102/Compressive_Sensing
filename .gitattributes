@@ -1,0 +1,15 @@
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.mat filter=lfs diff=lfs merge=lfs -text
+.gimat filter=lfs diff=lfs merge=lfs -text
+“* filter=lfs diff=lfs merge=lfs -text
+.mat filter=lfs diff=lfs merge=lfs -text
+“*.[[:space:]].mat filter=lfs diff=lfs merge=lfs -text
+“*.[[:space:]].pptx filter=lfs diff=lfs merge=lfs -text
+i[[:space:]].mat filter=lfs diff=lfs merge=lfs -text
+*[[:space:]].mat filter=lfs diff=lfs merge=lfs -text
+“*[[:space:]].mat filter=lfs diff=lfs merge=lfs -text
+“*.mat filter=lfs diff=lfs merge=lfs -text
+“.mat filter=lfs diff=lfs merge=lfs -text
+“**[[:space:]].mat filter=lfs diff=lfs merge=lfs -text
+.mat
+ filter=lfs diff=lfs merge=lfs -text
