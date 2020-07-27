@@ -67,14 +67,7 @@ figure
 for n = 1 : 4 : N_time
     plot(x, f(n,:),'LineWidth',5)
     ylim([0 2])
-    set(gca,'Fontsize',20)
-    set(gca,'fontname','times new Roman')
-    T = title('Temperature Distribution','fontsize',40);
-    set(T,'Interpreter','latex')
-    T = xlabel('$x$','fontsize',30);
-    set(T,'Interpreter','latex')
-    T = ylabel('$T$','fontsize',30);
-    set(T,'Interpreter','latex')
+    setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
     T = text(8,1.6,txt,'FontSize',30);
@@ -95,11 +88,11 @@ end
 figure
 [X, Y] = meshgrid(x, t);
 mesh(X,Y,f)
-setmesh('Tempreature Distribution','$x$','$t$','$T$','TV_inhomo_fdm_2_Ttx',printfigure)
+setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_inhomo_fdm_2_Ttx',printfigure)
 
-f_fdm_2 = f;
-x_fdm_2 = x;
-save('f_fdm_2.mat','x_fdm_2','f_fdm_2')
+f_fdm_inhomo_2 = f;
+x_fdm_inhomo_2 = x;
+save('f_fdm_inhomo_2.mat','x_fdm_inhomo_2','f_fdm_inhomo_2')
 
 
 

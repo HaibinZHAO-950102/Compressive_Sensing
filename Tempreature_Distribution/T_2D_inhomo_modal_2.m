@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 Length_x = 10;  
 Length_y = 20;  
@@ -32,8 +32,9 @@ end
 
 [Y,X] = meshgrid(y,x);
 mesh(X,Y,squeeze(f(1,:,:)));
+caxis([-0.5 2.5])
 pbaspect([1 Length_y/Length_x 0.5])
-setmesh('Initial Condition','$x$','$y$','$T$','T_2D_inhomo_modal_inital_condition',0)
+setmesh('Initial Condition','$x$','$y$','$f$','T_2D_inhomo_modal_inital_condition',0)
 
 phi = zeros(N + 1, N_length_x);  % Eigenfunktionen
 psi = zeros(N + 1, N_length_y);  % Eigenfunktionen
@@ -57,7 +58,7 @@ for i = 1 : N + 1
     plot(x,phi(i,:))
     hold on
 end
-txt = ['$N = ',num2str(N),'$'];
+txt = ['$G = ',num2str(N),'$'];
 TEXT = text(8,0.4,txt,'FontSize',30);
 set(TEXT,'Interpreter','latex')
 setplt('Eigenfunctions $\varphi$','$x$','$value$','T_2D_inhomo_modal_Eigenfunctions_phi',0)
@@ -67,8 +68,8 @@ for i = 1 : N + 1
     plot(y,psi(i,:))
     hold on
 end
-txt = ['$N = ',num2str(N),'$'];
-TEXT = text(18,0.35,txt,'FontSize',30);
+txt = ['$G = ',num2str(N),'$'];
+TEXT = text(16,0.3,txt,'FontSize',30);
 set(TEXT,'Interpreter','latex')
 setplt('Eigenfunctions $\psi$','$y$','$value$','T_2D_inhomo_modal_Eigenfunctions_psi',0)
 
@@ -127,13 +128,14 @@ figure
 for n = 1 : 1 : N_time
     mesh(X,Y,squeeze(f(n,:,:)))
     zlim([-0.5 2.5])
+    caxis([-0.5 2.5])
     pbaspect([1 Length_y/Length_x 0.5])
-    setmesh('Temperature Distribution','$x$','$y$','$T$','T_2D_inhomo_modal_2',0)
+    setmesh('Temperature Distribution','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(n)),'$'];
     TEXT = text(8,0,0.6,txt,'FontSize',30);
     set(TEXT,'Interpreter','latex')
-    txt = ['$N = ',num2str(N),'$'];
+    txt = ['$G = ',num2str(N),'$'];
     TEXT = text(8,0,1.5,txt,'FontSize',30);
     set(TEXT,'Interpreter','latex')
     drawnow
@@ -154,12 +156,13 @@ for n = 1 : 6
     a = round((N_time - 1) / 5 * (n - 1)) + 1;
     mesh(X,Y,squeeze(f(a,:,:)))
     zlim([-0.5 2.5])
+    caxis([-0.5 2.5])
     pbaspect([1 Length_y/Length_x 0.5])
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(a)),'$'];
     TEXT = text(8,0,0.6,txt,'FontSize',30);
     set(TEXT,'Interpreter','latex')
-    txt = ['$N = ',num2str(N),'$'];
+    txt = ['$G = ',num2str(N),'$'];
     TEXT = text(8,0,1.5,txt,'FontSize',30);
     set(TEXT,'Interpreter','latex')
     drawnow

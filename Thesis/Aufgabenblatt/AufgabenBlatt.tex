@@ -1,0 +1,59 @@
+\documentclass [a4paper, 10pt]{scrartcl}
+
+% Sprache + Encoding
+\usepackage{ucs} % unicode
+\usepackage[utf8x]{inputenc}
+\usepackage{ngerman} % deutsche Sprache
+\usepackage{ragged2e}
+\include{AufgabenblattHeader}
+
+\Arbeitsart{Masterarbeit}
+\Titel{Kalmanfilterung mit Pseudo-Messungen aus Compressive Sensing von nicht-sparsen Signalen}
+\Ziel{Rekonstruktion von nicht-sparsen Signalen mithilfe KFCS}
+
+\Student[B.Sc.]{Zhao, Haibin}
+\Matrikelnummer{2247796}
+\Referent[Prof. Dr.-Ing.]{Uwe D. Hanebeck}
+\Mitarbeiter[M.Sc.]{Funk, Christopher}
+\MitarbeiterB[Dr.-Ing.]{Noack, Benjamin}
+
+% Beginn Arbeit / Zwischenvortrag / Abgabe
+\Termine{15. April 2020}{$\approx$15. Juli 2020}{30. September 2020}
+
+% Datum für Unterschrift:
+%\renewcommand{\today}{20. Mai 2007}
+
+% Ganttchart
+\Ganttchart{Gantt.JPG}
+
+\begin{document}
+\Anfang
+
+Mit Compressive Sensing kann man sparse Signale durch weniger Messungen rekonstruieren. Mit Kalman-Filter kann man eine optimale Lösung zwischen Messungen und Systemmodell finden.
+
+Der Nachteil von CS ist, dass die Signale sparse sein müssen, und die Anzahl der Messungen mehr als die Sparsheit des Signals sein müssen. Obwohl im Momentan es einige Methode gibt, die Basisfunktionen zu finden, auf denen das Signal sparse dargestellt werden kann, ist dieses Verfahren sehr aufwandig. Außderdem nutzt CS kein Systemmodell.
+
+Somit kommt die Idee, dass man die CS mit Kalman-Filter kombinieren. Das Vorwissen vom Systemmodell kann die Anforderung auf der Anzahl der Messungen deutlich vergeringen, dann ist es möglich, CS auf nicht-sparsen aber sparse-Signalen zu verwenden.
+
+
+\begin{aufgaben}
+\item Literaturüberblick über verwandte Ansätze zur Zustandsschätzung geben.
+\item Erstellen von Testumgebung (Temperaturverteilung)
+  \begin{itemize}
+  \item Modalanalyse
+  \item Finite Differenz Methode
+  \end{itemize}
+\item Grundlage für KF und CS
+  \begin{itemize}
+  \item Kalmanfilterung
+  \item Compressive Sensing
+  \end{itemize}
+\item Kalman-Filtered Compressive Sensing
+  \begin{itemize}
+  \item Modalanalyse
+  \item Finite Differenz Methode
+  \item 2D-Fall
+  \end{itemize}
+\end{aufgaben}%
+\Ende
+\end{document}

@@ -29,7 +29,7 @@ if step_time > step_time_max
 end
 
 plot(x,f(1,:),'LineWidth',5)
-setplt('Initial Condition','$x$','$T$','TV_homo_modal_inital_condition_1',printfigure)
+setplt('Initial Condition','$x$','$f$','TV_homo_modal_inital_condition_1',printfigure)
 
 phi(1,:) = sqrt(1 / Length);
 for i = 2 : N + 1
@@ -43,7 +43,7 @@ for i = 1 : N + 1
     plot(0:step_length:Length,phi(i,:))
     hold on
 end
-txt = ['$N = ',num2str(N),'$'];
+txt = ['$G = ',num2str(N),'$'];
 TEXT = text(8,0.4,txt,'FontSize',30);
 set(TEXT,'Interpreter','latex')
 setplt('Eigenfunctions','$x$','$value$','TV_homo_modal_Eigenfunctions_1',printfigure)
@@ -71,12 +71,12 @@ figure
 for n = 1 : 40 : N_time
     plot(x, f(n,:),'LineWidth',5)
     ylim([-1 1])
-    setplt('Temperature Distribution','$x$','$T$','TV_homo_modal_1',0)
+    setplt('Temperature Distribution','$x$','$f$','TV_homo_modal_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
     TEXT = text(8,0.6,txt,'FontSize',30);
     set(TEXT,'Interpreter','latex')
-    txt = ['$N = ',num2str(N),'$'];
+    txt = ['$G = ',num2str(N),'$'];
     TEXT = text(8,0.8,txt,'FontSize',30);
     set(TEXT,'Interpreter','latex')
     drawnow
@@ -95,4 +95,9 @@ end
 figure
 [X, Y] = meshgrid(x, t);
 mesh(X,Y,f)
-setmesh('Tempreature Distribution','$x$','$t$','$T$','TV_homo_modal_Ttx_1',printfigure)
+setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_homo_modal_Ttx_1',printfigure)
+
+
+f_modal_homo_1 = f;
+x_modal_homo_1 = x;
+save('f_modal_homo_1.mat','x_modal_homo_1','f_modal_homo_1')
