@@ -9,7 +9,7 @@
 
 \Arbeitsart{Masterarbeit}
 \Titel{Kalmanfilterung mit Pseudo-Messungen aus Compressive Sensing von nicht-sparsen Signalen}
-\Ziel{Rekonstruktion von nicht-sparsen Signalen mithilfe KFCS}
+\Ziel{Reduzierung der Anforderung auf der Anzahl der Messungen zur Rekonstruktion nicht-sparser Signalen durch Kalman-Filtered Compressive-Sensing (KFCS)}
 
 \Student[B.Sc.]{Zhao, Haibin}
 \Matrikelnummer{2247796}
@@ -18,23 +18,39 @@
 \MitarbeiterB[Dr.-Ing.]{Noack, Benjamin}
 
 % Beginn Arbeit / Zwischenvortrag / Abgabe
-\Termine{15. April 2020}{$\approx$15. Juli 2020}{30. September 2020}
+\Termine{15. April 2020}{$\approx$15. Juli 2020}{15. Oktober 2020}
 
 % Datum für Unterschrift:
 %\renewcommand{\today}{20. Mai 2007}
 
 % Ganttchart
-\Ganttchart{Gantt.JPG}
+\Ganttchart{gantt.png}
 
 \begin{document}
 \Anfang
 
-Mit Compressive Sensing kann man sparse Signale durch weniger Messungen rekonstruieren. Mit Kalman-Filter kann man eine optimale Lösung zwischen Messungen und Systemmodell finden.
+Wenn ein Signal sparse ist, kann man Compressive-Sensing (CS) anwenden, um das Signal durch weniger Messungen rekonstruieren. Aber CS ist jedoch nicht für nicht-sparse Signale geeignet. Daher muss man ein neues Verfahren aufstellen, um CS anzuwenden. Mögliche Maßnahmen sind:
+\begin{enumerate}
+\item Betrachten die Änderung des Signals, anstatt das Signal selbst. Wenn die Änderung des Signals sparse ist, kann man das Verfahren zur Schätzung von Koeffizienten auf der Änderung von Koeffizienten anwenden. Im Vergleich zu der Anforderung von sparsen Signalen ist dies eine schwächere Anforderung, insbesondere bei kleinem zeitlichem Abtastintervall, kann es häufig erfüllt werden.
+\item Kombinieren CS mit dem Systemmodell (Kalman-Filter). D.h. man kann das rekonstruierte Signal aus CS als Pseudo-Messungen in Kalman-Filter einsetzen. Und gleichzeitig werden Gewichtung dynamisch bestimmt: bei den realen Messungen werden niedrige Messunsicherheiten und bei den Pseudo-Messungen hohe Messunsicherheiten eingestellt.
+\item Reduzieren die Dimension des zu rekonstruierenden Signals. CS wird nicht auf das ganze Signal, sondern auf alle möglichen Sensorstellen angewendet. Dadurch kann die Dimension deutlich verringert werden, wodurch die Sparsheit des Signals erhöht wird.
+\item Sparse Coding Representation (SCR). Sucht man mithilfe des maschinellen Lernens die Basisfunktionen, auf denen das Signal sparse dargestellt werden kann.
+\end{enumerate}
 
-Der Nachteil von CS ist, dass die Signale sparse sein müssen, und die Anzahl der Messungen mehr als die Sparsheit des Signals sein müssen. Obwohl im Momentan es einige Methode gibt, die Basisfunktionen zu finden, auf denen das Signal sparse dargestellt werden kann, ist dieses Verfahren sehr aufwandig. Außderdem nutzt CS kein Systemmodell.
+Da im obigen Prozess nur die Änderung des Signals geschätzt wird, führt dies zu einer kontinuierlichen Akkumulation von Fehlern. Daher sind einige Methoden erforderlich, um den Fehlern zu reduzieren, z.B.
+\begin{enumerate}
+\item Nach dem Kalman-Filter wird das geschätzte Signal in die Koeffizienten der Basisfunktionen transformiert, und wenn die Änderung der Koeffizienten zum nächsten Schritt berechnet werden, basiert es nicht auf dem geschätzten Koeffizienten aus dem vorherigen CS-Verfahren, sondern auf dem transformierten Koeffizienten aus dem Kalman-Filter.
+\item Wenn die Änderung der Koeffizienten zum nächsten Schritt berechnet werden, basiert es nicht auf dem transformierten Koeffizienten aus dem Kalman-Filter, sondern auf der Prädiktion aus dem Systemmodell.
+\end{enumerate}
+Unter diesen ist das erste Verfahren besser für unbekannte Eingangsgröße geeignet, und das zweite ist besser für bekannte Eingangsgröße geeignet.
 
-Somit kommt die Idee, dass man die CS mit Kalman-Filter kombinieren. Das Vorwissen vom Systemmodell kann die Anforderung auf der Anzahl der Messungen deutlich vergeringen, dann ist es möglich, CS auf nicht-sparsen aber sparse-Signalen zu verwenden.
-
+Darüber hinaus kann man bei jedem CS-Verfahren iterativ durchführen. D.h. man berechnet die Änderung der Koeffizienten iterativ, bis die Endbedingung erreicht. 
+\\
+\\
+\\
+\\
+\\
+\\
 
 \begin{aufgaben}
 \item Literaturüberblick über verwandte Ansätze zur Zustandsschätzung geben.
@@ -45,14 +61,22 @@ Somit kommt die Idee, dass man die CS mit Kalman-Filter kombinieren. Das Vorwiss
   \end{itemize}
 \item Grundlage für KF und CS
   \begin{itemize}
-  \item Kalmanfilterung
+  \item Kalman-Filter
   \item Compressive Sensing
   \end{itemize}
 \item Kalman-Filtered Compressive Sensing
   \begin{itemize}
-  \item Modalanalyse
-  \item Finite Differenz Methode
-  \item 2D-Fall
+  \item zufällige Messungen + Kalman-Filter
+  \item sparse Änderung
+  \item Dimension Reduktion
+  \item Sparse Coding Representation
+  \item Integration von KF und CS
+  \item Iteratives Verfahren
+  \end{itemize}
+\item Schließen
+  \begin{itemize}
+  \item Präsentation
+  \item Masterarbeit screiben
   \end{itemize}
 \end{aufgaben}%
 \Ende

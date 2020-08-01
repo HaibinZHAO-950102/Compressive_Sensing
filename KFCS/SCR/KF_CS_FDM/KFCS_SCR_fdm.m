@@ -4,7 +4,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('CS_SCR_L1');
 load('Messwerte')

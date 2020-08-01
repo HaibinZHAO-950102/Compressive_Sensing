@@ -94,5 +94,6 @@ f_fdm_inhomo_2 = f;
 x_fdm_inhomo_2 = x;
 save('f_fdm_inhomo_2.mat','x_fdm_inhomo_2','f_fdm_inhomo_2')
 
+save('Anregung_FDM','u')
 
 

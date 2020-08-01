@@ -27,7 +27,7 @@ u = zeros(nt, nx);  % Anregung
 U = zeros(N + 1, nt);  % Anregungsgewichtung
 
 sigma_sr = 0.005;    % Systemrauschen
-sigma_mu = 0.005;    % Messunsicherheit
+sigma_mu = 0.025;    % Messunsicherheit
 
 plot(x,f(1,:),'LineWidth',5)
 setplt('Initial Condition','$x$','$f$','TV_inhomo_modal_inital_condition',0)
@@ -85,12 +85,17 @@ for n = 1 : nt
     end
 end
 
-f = f + V';
+f_sr = f;
+f_mu = f + V';
 
 figure
 for n = 1 : 0.5/dt : nt
-    plot(x, f(n,:),'LineWidth',5)
-    ylim([0 2])
+    clf
+    plot(x, f_mu(n,:),'LineWidth',3)
+    hold on
+    plot(x, f_sr(n,:),'LineWidth',5)
+    ylim([-0.5 2.5])
+    legend('Signal with measurement uncertainty','Signal with system noise')
     setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*dt),'$'];
@@ -114,7 +119,7 @@ end
 
 figure
 [X, Y] = meshgrid(x, t);
-mesh(X,Y,f)
+mesh(X,Y,f_mu)
 setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_rauschenhaft',printfigure)
 
 
@@ -122,12 +127,11 @@ setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_rauschenhaft',printfigu
 % positions
 p_index = round(linspace(1,nx,64)); % 64 sensors from nx points
 p = x(p_index);                     % positions of 51 sensors from 0 - Length
-m = f(:,p_index)';                  % their measurements
+m = f_mu(:,p_index)';                  % their measurements
 
-f_modal_inhomo_2 = f;
-x_modal_inhomo_2 = x;
-save('f_modal_inhomo_2.mat','x_modal_inhomo_2','f_modal_inhomo_2')
+f_sr = f_sr';
+f_mu = f_mu';
 
-f_rh = f';
-save('Messwerte_rh.mat','f_rh','k','Length','dt','dx','p','m','p_index','sigma_sr','sigma_mu')
+m_rh = m;
+save('Messwerte_rh.mat','f_sr','f_mu','k','Length','dt','dx','p','m_rh','p_index','sigma_sr','sigma_mu')
 

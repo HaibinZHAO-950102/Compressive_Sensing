@@ -44,9 +44,20 @@ Cutedge(2) = max(Cutedge(2),1);
 Cutedge(3) = min(Cutedge(3),m);
 Cutedge(4) = min(Cutedge(4),n);
 
+map(end,:) = [1 1 1];
+
 for k = 1 : numImages
     Frame = I(:,:,:, k);
     I_cut = Frame(Cutedge(1):Cutedge(3),Cutedge(2):Cutedge(4));
+    gray = I_cut(1,1);
+    for i = 1 : size(I_cut,1)
+        for j = 1 : size(I_cut,2)
+            if I_cut(i,j) == gray
+                I_cut(i,j) = size(map,1);
+            end
+        end
+    end
+    
     if k == 1
          imwrite(I_cut,map,filename,'gif', 'Loopcount',inf,'DelayTime',1e-6);
     else

@@ -1,7 +1,7 @@
 clc
 clear
 close all
-printfigure = 1;
+printfigure = 0;
 
 load Messwerte
 load f_e_scr_kf_fdm

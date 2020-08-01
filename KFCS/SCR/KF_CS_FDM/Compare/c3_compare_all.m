@@ -4,8 +4,8 @@ close all
 printfigure = 1;
 
 load f_random_simpling_KF_fdm
-load f_e_mt_kf_fdm
-load f_e_mt_kf_fdm_integrated_1
+load f_e_scr_kf_fdm
+load f_e_scr_kf_fdm_integrated_1
 load f_e_kalman_fdm_1D_12
 load f_e_kalman_fdm_1D_40
 load Messwerte
@@ -17,7 +17,7 @@ f2 = f_random_simpling_KF_fdm;
 f5 = f_e_mt_kf_fdm_integrated_1;
 f1 = f_e_kalman_fdm_1D_12;
 f4 = f_e_kalman_fdm_1D_40;
-f3 = f_e_mt_kf_fdm;
+f3 = f_e_scr_kf_fdm;
 
 
 NAME = 'comapre all';

@@ -33,7 +33,7 @@ for n = 1 : 0.5/Dt : nt
     ylim([-0.5 2.5])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
-    T = title('Temperature Distribution','fontsize',30);
+    T = title('Temperature Distribution','fontsize',40);
     set(T,'Interpreter','latex')
     T = xlabel('$x$','fontsize',30);
     set(T,'Interpreter','latex')
