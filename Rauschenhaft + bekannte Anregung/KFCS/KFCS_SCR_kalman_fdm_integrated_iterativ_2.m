@@ -4,7 +4,7 @@ clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('Messwerte_rh')
 load basis_ml
@@ -168,6 +168,6 @@ for n = 1 : 0.5/Dt : nt
     end
 end
 
-f_rh_scr_kf_fdm_integrated_iterativ_2 = f_e_integrated_2;
-save('f_rh_scr_kf_fdm_integrated_iterativ_2.mat','f_rh_scr_kf_fdm_integrated_iterativ_2')
+% f_rh_scr_kf_fdm_integrated_iterativ_2 = f_e_integrated_2;
+% save('f_rh_scr_kf_fdm_integrated_iterativ_2.mat','f_rh_scr_kf_fdm_integrated_iterativ_2')
 

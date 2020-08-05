@@ -8,17 +8,17 @@
 \include{AufgabenblattHeader}
 
 \Arbeitsart{Masterarbeit}
-\Titel{Kalmanfilterung mit Pseudo-Messungen aus Compressive Sensing von nicht-sparsen Signalen}
-\Ziel{Reduzierung der Anforderung auf der Anzahl der Messungen zur Rekonstruktion nicht-sparser Signalen durch Kalman-Filtered Compressive-Sensing (KFCS)}
+\Titel{Bessere Rekonstruktion bei weniger Messungen durch Kombination von Kalman-Filter und Compressive-Sensing}
+\Ziel{Die bessere Signalrekonstruktion bei weniger Messungen durch Kombination von Kalman-Filter und Compressive-Sensing}
 
 \Student[B.Sc.]{Zhao, Haibin}
 \Matrikelnummer{2247796}
 \Referent[Prof. Dr.-Ing.]{Uwe D. Hanebeck}
-\Mitarbeiter[M.Sc.]{Funk, Christopher}
-\MitarbeiterB[Dr.-Ing.]{Noack, Benjamin}
+\Mitarbeiter[Dr.-Ing.]{Noack, Benjamin}
+\MitarbeiterB[M.Sc.]{Funk, Christopher}
 
 % Beginn Arbeit / Zwischenvortrag / Abgabe
-\Termine{15. April 2020}{$\approx$15. Juli 2020}{15. Oktober 2020}
+\Termine{15. Mai 2020}{$\approx$15. August 2020}{15. November 2020}
 
 % Datum für Unterschrift:
 %\renewcommand{\today}{20. Mai 2007}
@@ -29,22 +29,28 @@
 \begin{document}
 \Anfang
 
-Wenn ein Signal sparse ist, kann man Compressive-Sensing (CS) anwenden, um das Signal durch weniger Messungen rekonstruieren. Aber CS ist jedoch nicht für nicht-sparse Signale geeignet. Daher muss man ein neues Verfahren aufstellen, um CS anzuwenden. Mögliche Maßnahmen sind:
+Wenn ein Signal dünnbesetzt ist, kann man Compressive-Sensing (CS) anwenden, um das Signal durch weniger Messungen zu rekonstruieren, als nach dem Nyquist-Shannon Theorem gefordert sind. CS ist jedoch nicht für nicht-dünnbesetzte Signale geeignet. Daher muss man ein neues Verfahren aufstellen, um CS anzuwenden. Mögliche Maßnahmen sind:
 \begin{enumerate}
-\item Betrachten die Änderung des Signals, anstatt das Signal selbst. Wenn die Änderung des Signals sparse ist, kann man das Verfahren zur Schätzung von Koeffizienten auf der Änderung von Koeffizienten anwenden. Im Vergleich zu der Anforderung von sparsen Signalen ist dies eine schwächere Anforderung, insbesondere bei kleinem zeitlichem Abtastintervall, kann es häufig erfüllt werden.
-\item Kombinieren CS mit dem Systemmodell (Kalman-Filter). D.h. man kann das rekonstruierte Signal aus CS als Pseudo-Messungen in Kalman-Filter einsetzen. Und gleichzeitig werden Gewichtung dynamisch bestimmt: bei den realen Messungen werden niedrige Messunsicherheiten und bei den Pseudo-Messungen hohe Messunsicherheiten eingestellt.
-\item Reduzieren die Dimension des zu rekonstruierenden Signals. CS wird nicht auf das ganze Signal, sondern auf alle möglichen Sensorstellen angewendet. Dadurch kann die Dimension deutlich verringert werden, wodurch die Sparsheit des Signals erhöht wird.
-\item Sparse Coding Representation (SCR). Sucht man mithilfe des maschinellen Lernens die Basisfunktionen, auf denen das Signal sparse dargestellt werden kann.
+\item Betrachten der Änderung des Signals, anstatt des Signals selbst. Wenn die Änderung des Signals dünnbesetzt ist, kann man CS anwenden, um die Änderung der Koeffizienten zu schätzen. Im Vergleich zur Forderung dünnbesetzter Signale ist dies eine schwächere Forderung. Insbesondere bei kleinem zeitlichem Abtastintervall, kann sie häufig erfüllt werden.
+
+\item Reduzieren der Dimension des zu rekonstruierenden Signals. Eine bestimmte Anzahl von Sensoren werden eingesetzt, für jeden Zeitschritt werden einige Sensoren zufällig aktivert. Auf diese Weise wird CS nicht auf das ganze Signal, sondern auf alle möglichen Sensorstellen angewendet. Dadurch kann die Dimension deutlich verringert werden, wodurch die Dünnbesetztheit des Signals erhöht wird.
+
+\item Kombinieren von CS mit einem Systemmodell (Kalman-Filter). Das rekonstruierte Signal aus CS kann als Pseudo-Messungen in einem Kalman-Filter eingesetzt werden. Gleichzeitig werden die Messunsicherheiten dynamisch bestimmt: bei den realen Messungen  (Messungen aus Sensoren) werden niedrige Messunsicherheiten und bei den Pseudo-Messungen (rekonstruierten Werten aus CS) hohe Messunsicherheiten eingestellt.
+
+\item Sparse Coding Representation (SCR). Mithilfe des maschinellen Lernens werden Basisfunktionen, mit denen das Signal dünnbesetzt dargestellt kann, gesucht.
 \end{enumerate}
 
-Da im obigen Prozess nur die Änderung des Signals geschätzt wird, führt dies zu einer kontinuierlichen Akkumulation von Fehlern. Daher sind einige Methoden erforderlich, um den Fehlern zu reduzieren, z.B.
+Da im obigen Prozess nur die Änderung des Signals geschätzt wird, führt dies zu einer kontinuierlichen Akkumulation von Fehlern. Daher sind einige Methoden erforderlich, um den akkumulierten Fehler zu reduzieren, z.B.
 \begin{enumerate}
-\item Nach dem Kalman-Filter wird das geschätzte Signal in die Koeffizienten der Basisfunktionen transformiert, und wenn die Änderung der Koeffizienten zum nächsten Schritt berechnet werden, basiert es nicht auf dem geschätzten Koeffizienten aus dem vorherigen CS-Verfahren, sondern auf dem transformierten Koeffizienten aus dem Kalman-Filter.
-\item Wenn die Änderung der Koeffizienten zum nächsten Schritt berechnet werden, basiert es nicht auf dem transformierten Koeffizienten aus dem Kalman-Filter, sondern auf der Prädiktion aus dem Systemmodell.
-\end{enumerate}
-Unter diesen ist das erste Verfahren besser für unbekannte Eingangsgröße geeignet, und das zweite ist besser für bekannte Eingangsgröße geeignet.
+\item Die Basiskoeffizienten des vom Kalman-Filter geschätzten Signals werden im nächsten Zeitschritt für das CS-Verfahren verwendet.
 
-Darüber hinaus kann man bei jedem CS-Verfahren iterativ durchführen. D.h. man berechnet die Änderung der Koeffizienten iterativ, bis die Endbedingung erreicht. 
+\item Die Prädiktion des Kalman-Filters wird zur Berechnung der Änderung der Koeffizienten genutzt.
+\end{enumerate}
+
+Darüber hinaus kann man das CS-Verfahren in jedem Zeitschritt iterativ durchführen. D.h. man berechnet die Änderung der Koeffizienten iterativ, bis eine Endbedingung erreicht ist. 
+\\
+\\
+\\
 \\
 \\
 \\
@@ -59,24 +65,20 @@ Darüber hinaus kann man bei jedem CS-Verfahren iterativ durchführen. D.h. man 
   \item Modalanalyse
   \item Finite Differenz Methode
   \end{itemize}
-\item Grundlage für KF und CS
-  \begin{itemize}
-  \item Kalman-Filter
-  \item Compressive Sensing
-  \end{itemize}
+\item Grundlagen für Kalman-Filter und Compressive Sensing
 \item Kalman-Filtered Compressive Sensing
   \begin{itemize}
   \item zufällige Messungen + Kalman-Filter
-  \item sparse Änderung
-  \item Dimension Reduktion
+  \item dünnbesetzte Änderung
+  \item Dimensionsreduktion
   \item Sparse Coding Representation
   \item Integration von KF und CS
   \item Iteratives Verfahren
   \end{itemize}
-\item Schließen
+\item Abschluss
   \begin{itemize}
   \item Präsentation
-  \item Masterarbeit screiben
+  \item Masterarbeit schreiben
   \end{itemize}
 \end{aufgaben}%
 \Ende

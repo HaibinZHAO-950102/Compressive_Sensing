@@ -1,7 +1,7 @@
 clc
 clear
 close all
-printfigure = 1;
+printfigure = 0;
 
 load Messwerte_rh
 load f_rh_kalman_fdm_1D_12
@@ -33,34 +33,28 @@ l5 = 'KFCS iterativ';
 x = 0 : dx : 10;
 
 
-error_1 = f - f1;
-error_2 = f - f2;
-error_3 = f - f3;
-error_4 = f - f4;
-error_5 = f - f5;
+Error_1 = f - f1;
+Error_2 = f - f2;
+Error_3 = f - f3;
+Error_4 = f - f4;
+Error_5 = f - f5;
 
-zero = zeros(size(f));
 
-similariy_1 = zeros(size(f,2),1);
-similariy_2 = zeros(size(f,2),1);
-similariy_3 = zeros(size(f,2),1);
-similariy_4 = zeros(size(f,2),1);
-similariy_5 = zeros(size(f,2),1);
 
 for i = 1 : size(f,2)
-    similariy_1(i) = f(:,i)' * f1(:,i) / (norm(f(:,i)) * norm(f1(:,i)));
-    similariy_2(i) = f(:,i)' * f2(:,i) / (norm(f(:,i)) * norm(f2(:,i)));
-    similariy_3(i) = f(:,i)' * f3(:,i) / (norm(f(:,i)) * norm(f3(:,i)));
-    similariy_4(i) = f(:,i)' * f4(:,i) / (norm(f(:,i)) * norm(f4(:,i)));
-    similariy_5(i) = f(:,i)' * f5(:,i) / (norm(f(:,i)) * norm(f5(:,i)));
+    error_1(i) = norm(Error_1(:,i));
+    error_2(i) = norm(Error_2(:,i));
+    error_3(i) = norm(Error_3(:,i));
+    error_4(i) = norm(Error_4(:,i));
+    error_5(i) = norm(Error_5(:,i));
 end
 
-error_1 = 2 * (1-similariy_1);
-error_2 = 2 * (1-similariy_2);
-error_3 = 2 * (1-similariy_3);
-error_4 = 2 * (1-similariy_4);
-error_5 = 2 * (1-similariy_5);
-
+% error_1 = 2 * (1-similariy_1);
+% error_2 = 2 * (1-similariy_2);
+% error_3 = 2 * (1-similariy_3);
+% error_4 = 2 * (1-similariy_4);
+% error_5 = 2 * (1-similariy_5);
+% 
 mean_error_1 = mean(error_1(25:end));
 mean_error_2 = mean(error_2(25:end));
 mean_error_3 = mean(error_3(25:end));
