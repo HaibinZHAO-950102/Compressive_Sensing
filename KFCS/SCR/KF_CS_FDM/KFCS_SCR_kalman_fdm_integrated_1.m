@@ -4,7 +4,7 @@ clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('Messwerte')
 load basis_ml
@@ -71,7 +71,7 @@ end
 
 
 f_e_integrated_1 = zeros(nx, nt);
-f_e_integrated_1(:,1) = f(:,1);
+% f_e_integrated_1(:,1) = f(:,1);
 Ce = speye(nx) * 1;
 Cv = speye(length(p_index)) * 1;  % Messunsicherheit
 Cw = speye(nx) * 10;  % Systemrauschen

@@ -2,11 +2,11 @@ clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('Messwerte')
 
-M = 36;  % Anzahl der Messungen
+M = 12;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 S = round(linspace(1,64,M));  % benutzte Sensoren
@@ -39,6 +39,7 @@ H = Phi;
 
 
 f_e = zeros(nx, nt);
+f_e(:,1) = f(:,1);
 Ce = speye(nx) * 1;
 Cv = speye(length(S)) * 0.1;  % Messunsicherheit
 Cw = speye(nx) * 1;  % Systemrauschen

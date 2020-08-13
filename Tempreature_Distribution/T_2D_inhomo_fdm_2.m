@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 Length_x = 10;  
 Length_y = 20;  
@@ -49,9 +49,9 @@ value_b = [];
 u = zeros(nx,ny,nt);
 for l = 1 : nt
     u(3/dx+1,3/dt+1,l) = 1 * sin(t(l) - pi / 4) * dx / dt;
-    u(5/dx+1,10/dt+1,l) = -0.2 * sin(t(l)) / dx / dt;
-    u(7/dx+1,13/dt+1,l) = 0.01 * t(l) / dx / dt;
-    u(8/dx+1,18/dt+1,l) = 0.03 * t(l) / dx / dt;
+    u(5/dx+1,10/dt+1,l) = -2 * sin(t(l)) / dx / dt;
+    u(7/dx+1,13/dt+1,l) = 0.02 * t(l) / dx / dt;
+    u(8/dx+1,18/dt+1,l) = 0.05 * t(l) / dx / dt;
 end
 
 
@@ -116,8 +116,8 @@ end
 figure
 for n = 1 : nt
     mesh(X,Y,squeeze(f(:,:,n)))
-    zlim([0 2.5])
-    caxis([0 2.5])
+    zlim([-1 3])
+    caxis([-1 3])
     pbaspect([1 Length_y/Length_x 0.5])
     setmesh('Temperature Distribution','$x$','$y$','$f$','T_2D_inhomo_fdm_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
@@ -142,8 +142,8 @@ figure
 for n = 1 : 6
     a = round((nt - 1) / 5 * (n - 1)) + 1;
     mesh(X,Y,squeeze(f(:,:,a)))
-    zlim([0 2.5])
-    caxis([0 2.5])
+    zlim([-1 3])
+    caxis([-1 3])
     pbaspect([1 Length_y/Length_x 0.5])
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(a)),'$'];

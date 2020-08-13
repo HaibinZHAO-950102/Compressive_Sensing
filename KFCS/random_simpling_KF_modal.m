@@ -4,7 +4,7 @@ clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('Messwerte')
 
@@ -63,6 +63,7 @@ for t = 1 : N_time
 end
 
 T = zeros(G, N_time);
+T(:,1) = (H'*H)^-1 * H' * m(:,1);
 Ce = zeros(G, G, N_time);
 Ce(:,:,1) = eye(G) * 10 ^ 10;
 Cv = eye(N) * 0.01;  % Messunsicherheit

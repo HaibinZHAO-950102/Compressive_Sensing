@@ -53,6 +53,7 @@ for t = 1 : N_time
 end
 
 f_e = zeros(nx, nt);
+f_e(:,t) = f(:,1);
 Ce = speye(nx) * 1;
 Cv = speye(nx) * 0.1;  % Messunsicherheit
 Cw = speye(nx) * 10;  % Systemrauschen
