@@ -2,11 +2,11 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('Messwerte_rh_2D')
 
-M = 7;  % Anzahl der Messungen
+M = 5;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 x = 0 : dx : Lx;
@@ -36,7 +36,7 @@ nt = length(t);
 
 k = 0.1;  % Waermeleitfaehigkeit in cm^2/s
 
-N = M - 1;  % Grad
+N = 4;  % Grad
 lambda = 0 : pi / Lx : N * pi / Lx;
 sigma = 0 : pi / Ly : N * pi / Ly;
 
@@ -80,39 +80,39 @@ for i = 1 : M^2
 end
 H = Phi * Psi;
 
-% u = zeros(nt, nx, ny);  % Anregung
-% Ua = zeros(N + 1, N + 1, nt);
-% 
-% u(:,round(3/dx+1),round(3/dy+1)) = 1 * sin(t - pi / 4);
-% u(:,round(5/dx+1),round(10/dy+1)) = -2 * sin(t);
-% u(:,round(7/dx+1),round(13/dy+1)) = 0.02 * t;
-% u(:,round(8/dx+1),round(18/dy+1)) = 0.05 * t;
-% 
-% for m = 1 : N + 1
-%     for n = 1 : N + 1
-%         for i = 1 : nt
-%             Ua(m,n,i) = u(i,round(3/dx+1),round(3/dy+1)) * phi(round(3/dx+1),m) * psi(round(3/dy+1),n) +...
-%                         u(i,round(5/dx+1),round(10/dy+1)) * phi(round(5/dx+1),m) * psi(round(10/dy+1),n) +...
-%                         u(i,round(7/dx+1),round(13/dy+1)) * phi(round(7/dx+1),m) * psi(round(13/dy+1),n) + ...
-%                         u(i,round(8/dx+1),round(18/dy+1)) * phi(round(8/dx+1),m) * psi(round(18/dy+1),n);
-%         end
-%     end
-% end
-% 
-% for i = 1 : nt
-%     U(:,i) = reshape(squeeze(Ua(:,:,i)),M^2,1);
-% end
+u = zeros(nt, nx, ny);  % Anregung
+Ua = zeros(N + 1, N + 1, nt);
+
+u(:,round(3/dx+1),round(3/dy+1)) = 1 * sin(t - pi / 4);
+u(:,round(5/dx+1),round(10/dy+1)) = -2 * sin(t);
+u(:,round(7/dx+1),round(13/dy+1)) = 0.02 * t;
+u(:,round(8/dx+1),round(18/dy+1)) = 0.05 * t;
+
+for m = 1 : N + 1
+    for n = 1 : N + 1
+        for i = 1 : nt
+            Ua(m,n,i) = u(i,round(3/dx+1),round(3/dy+1)) * phi(round(3/dx+1),m) * psi(round(3/dy+1),n) +...
+                        u(i,round(5/dx+1),round(10/dy+1)) * phi(round(5/dx+1),m) * psi(round(10/dy+1),n) +...
+                        u(i,round(7/dx+1),round(13/dy+1)) * phi(round(7/dx+1),m) * psi(round(13/dy+1),n) + ...
+                        u(i,round(8/dx+1),round(18/dy+1)) * phi(round(8/dx+1),m) * psi(round(18/dy+1),n);
+        end
+    end
+end
+
+for i = 1 : nt
+    U(:,i) = reshape(squeeze(Ua(:,:,i)),(N+1)^2,1);
+end
 
 
 T = zeros((N+1)^2,nt);
-T(:,1) = (H' * H)^-1 * H' * m_rh(1,:)';
+T(:,1) = (Psi' * Psi)^-1 * Psi' * reshape(F_sr(1,:,:),128^2,1);
 Ce = zeros((N+1)^2, (N+1)^2, nt);
-Ce(:,:,1) = eye((N+1)^2) * 10 ^ 10;
+Ce(:,:,1) = eye((N+1)^2) * 1;
 Cv = speye(M^2) * 0.1;  % Messunsicherheit
-Cw = speye((N+1)^2) * 1;  % Systemrauschen
+Cw = speye((N+1)^2) * 1e-3;  % Systemrauschen
 
 for t = 2 : nt
-    Tp = A * T(:,t-1) ;
+    Tp = A * T(:,t-1) + Dt * U(:,t-1);
     Cp = A * Ce(:,:, t-1) * A' + Cw;
     K = Cp * H' / (H * Cp * H' + Cv);
     T(:,t) = (eye(size(K,1)) - K * H) * Tp + K * reshape(m_rh(t,:,:),M^2,1);
@@ -157,3 +157,5 @@ for n = 1 : 5 : nt
     end
 end
 
+f_e_kf = f_e;
+save('f_e_kf.mat','f_e_kf')

@@ -148,8 +148,8 @@ t = 0 : dt : Time;
 % px_index = round(linspace(1,nx,16)); 
 % py_index = round(linspace(1,ny,16)); 
 % sensoren = zeros(nx,ny);
-% for i = 1 : 8
-%     for j = 1 : 8
+% for i = 1 : 16
+%     for j = 1 : 16
 %         sensoren(px_index(i),py_index(j)) = 1;
 %     end
 % end
