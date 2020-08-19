@@ -1,21 +1,4 @@
 function [x, Out] = OMP(A,y,varargin)
-% This is a l1 minimization solver for orthogonal matching pursuit: 
-%   minimize     ||x||_1
-%   subject to   y = Ax,
-% -----------------------------------------------------------------
-% Author: Beier ZHU
-%         Tsinghua University
-% -----------------------------------------------------------------
-% 
-% =========================Required inputs=========================  
-% A -- an m x n matrix
-% y -- an m x 1 vector
-% =========================Optional inputs=========================
-% 'maxIter' -- maximum number of iterations
-% 'StopTolerance' -- stopping tolerance
-% ===========================Outputs===============================
-% x -- last iterate (hopefully an approximate solution)
-% Out.iter -- # of iterations taken
 
     % Test for number of required parametres
     if (nargin-length(varargin)) ~= 2
