@@ -72,7 +72,7 @@ end
 
 f_e_integrated_1 = zeros(nx, nt);
 f_e_integrated_1(:,1) = f(:,1);
-Ce = speye(nx) * 0.1;
+Ce = speye(nx) * 1;
 Cv = speye(length(p_index)) * 1;  % Messunsicherheit
 Cw = speye(nx) * 10;  % Systemrauschen
 
@@ -82,13 +82,8 @@ for t = 2 : nt
     h = squeeze(Phi_cs(t,:,:)) * THETA;
     y = m(S(t,:),t);
     
-    e = 0.05;
-    cvx_begin quiet;
-        variable a(64,1);
-        minimize(norm(a,1));
-        subject to;
-            norm(h * (z(:,t-1) + a) - y) <= e;
-    cvx_end;
+    e = 0.1;
+    a = OMP(h,y-h*z(:,t-1),'STOPTOLERANCE',e);
     
     z(:, t) = z(:,t-1) + a;
     dz(:,t-1) = a;
