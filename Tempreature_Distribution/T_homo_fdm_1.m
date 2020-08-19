@@ -50,11 +50,11 @@ for n = 1 : N_length
 end
 
 T = H\b;
-for n = 1 : N_length
-    for m = 2 : N_time
-        f(m,n) = T(n+N_length*(m-1));
-    end
-end
+ for n = 1 : N_length
+     for m = 2 : N_time
+         f(m,n) = T(n+N_length*(m-1));
+     end
+ end
 
 figure
 for n = 1 : 4 : N_time
@@ -82,12 +82,12 @@ for n = 1 : 4 : N_time
     end
 end
 
-figure
-[X, Y] = meshgrid(x, t);
-mesh(X,Y,f)
-setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_homo_fdm_Ttx_1',printfigure)
-
-
-f_fdm_homo_1 = f;
-x_fdm_homo_1 = x;
-save('f_fdm_homo_1.mat','x_fdm_homo_1','f_fdm_homo_1')
+% figure
+% [X, Y] = meshgrid(x, t);
+% mesh(X,Y,f)
+% setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_homo_fdm_Ttx_1',printfigure)
+% 
+% 
+% f_fdm_homo_1 = f;
+% x_fdm_homo_1 = x;
+% save('f_fdm_homo_1.mat','x_fdm_homo_1','f_fdm_homo_1')

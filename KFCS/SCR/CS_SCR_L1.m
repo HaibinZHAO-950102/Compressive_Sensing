@@ -7,8 +7,8 @@ close all
 printfigure = 0;
 
 load('Messwerte')
-load basis_ml
-
+% load basis_ml
+load OSB
 
 x = 0 : dx : 10;
 nx = length(x);
@@ -41,7 +41,7 @@ for t = 1 : nt
 end
 
 z = zeros(64, nt);
-z(:,1) = MT * f(p_index,1);
+z(:,1) = ST * f(p_index,1);
 
 for t = 2 : nt
     t
