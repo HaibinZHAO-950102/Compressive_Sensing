@@ -60,7 +60,7 @@ set(T,'Interpreter','latex')
 txt = ['$K = 10$'];
 T = text(0.8,0.4,txt,'FontSize',30);
 set(T,'Interpreter','latex')
-setplt('Tempreature Distribution','$x$','$f$','K-term Approximation DCT',printfigure)
+setplt('Temperature Distribution','$x$','$f$','K-term Approximation DCT',printfigure)
 
 M = 24;
 S = zeros(1,M);

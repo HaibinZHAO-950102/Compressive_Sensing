@@ -79,7 +79,7 @@ legend('t = 20','t = 19.5','Signal K-term')
 txt = ['$t = 20$'];
 T = text(0.8,0.6,txt,'FontSize',30);
 set(T,'Interpreter','latex')
-setplt('Tempreature Distribution','$x$','$f$','K-term Change Approximation DCT',printfigure)
+setplt('Temperature Distribution','$x$','$f$','K-term Change Approximation DCT',printfigure)
 
 
 
@@ -130,6 +130,6 @@ set(T,'Interpreter','latex')
 xlim([0 10])
 ylim([0 2])
 legend('t = 20','t = 19.5','Signal CS','Measurements')
-setplt('Tempreature Distribution','$x$','$f$','CS Change Recovery DCT',printfigure)
+setplt('Temperature Distribution','$x$','$f$','CS Change Recovery DCT',printfigure)
 
 

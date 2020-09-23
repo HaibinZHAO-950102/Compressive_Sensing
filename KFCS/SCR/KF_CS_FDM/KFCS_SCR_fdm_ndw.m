@@ -39,11 +39,14 @@ end
 H = Phi;
 
 f_e = zeros(nx, nt);
+f_e = f(:,1);
 Ce = speye(nx) * 1;
-Cv = speye(length(p_index)) * 0.05;  % Messunsicherheit
-Cw = speye(nx) * 2;  % Systemrauschen
+Cv = speye(length(S)) * 1;  % Messunsicherheit
+Cw = speye(nx) * 5;  % Systemrauschen
 for n = 2 : nt
-   
+    n
+    Cv = eye(length(p_index)) * 1; 
+    
     fp = U \ f_e(:, n-1);
     Cp = U \ (Ce + Cw) / U';
     K = Cp * H' / (H * Cp * H' + Cv);
@@ -94,12 +97,5 @@ for n = 1 : 0.5/Dt : nt
     end
 end
 
-f_e_scr_kf_fdm_ndw = f_e;
-save('f_e_scr_kf_fdm_ndw.mat','f_e_scr_kf_fdm_ndw')
-
-
-
-
-
-
-
+% f_e_scr_kf_fdm_ndw = f_e;
+% save('f_e_scr_kf_fdm_ndw.mat','f_e_scr_kf_fdm_ndw')

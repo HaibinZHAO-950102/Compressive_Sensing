@@ -2,11 +2,11 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('Messwerte_rh')
 
-M = 12;  % Anzahl der Messungen
+M = 24;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 S = round(linspace(1,64,M));  % benutzte Sensoren
@@ -91,6 +91,6 @@ for n = 1 : 0.5/Dt : nt
     end
 end
 
-% f_rh_kalman_fdm_1D_24 = f_e;
-% save('f_rh_kalman_fdm_1D_24.mat','f_rh_kalman_fdm_1D_24')
+f_rh_kalman_fdm_1D_24 = f_e;
+save('f_rh_kalman_fdm_1D_24.mat','f_rh_kalman_fdm_1D_24')
 

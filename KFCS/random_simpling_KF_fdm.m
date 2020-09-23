@@ -53,7 +53,7 @@ for t = 1 : N_time
 end
 
 f_e = zeros(nx, nt);
-f_e(:,t) = f(:,1);
+f_e(:,1) = f(:,1);
 Ce = speye(nx) * 1;
 Cv = speye(nx) * 0.1;  % Messunsicherheit
 Cw = speye(nx) * 10;  % Systemrauschen
@@ -81,7 +81,7 @@ for n = 1 : 0.5/Dt : N_time
     plot(x, f_e(:,n),'c-','LineWidth',5)
     hold on
     plot(x(p_index(S(n,:))),m(S(n,:),n),'r.','Markersize',40)
-    legend('Signal','Signal Estimated','Measure Points')
+    legend('Signal','Signal Estimated','Measurements')
     xlim([0 10])
     ylim([-0.5 2.5])
     set(gca,'Fontsize',20)

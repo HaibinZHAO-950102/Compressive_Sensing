@@ -81,7 +81,7 @@ set(T,'Interpreter','latex')
 txt = ['$K = 10$'];
 T = text(0.8,0.4,txt,'FontSize',30);
 set(T,'Interpreter','latex')
-setplt('Tempreature Distribution DCT','$x$','$f$','K-term Change Approximation DCT',printfigure)
+setplt('Temperature Distribution','$x$','$f$','K-term Change Approximation DCT',printfigure)
 
 
 

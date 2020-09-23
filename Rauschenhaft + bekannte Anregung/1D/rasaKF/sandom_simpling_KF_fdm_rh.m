@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('Messwerte_rh')
 

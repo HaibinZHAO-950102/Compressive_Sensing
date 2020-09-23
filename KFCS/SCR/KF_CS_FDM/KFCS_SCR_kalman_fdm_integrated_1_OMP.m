@@ -82,7 +82,7 @@ for t = 2 : nt
     h = squeeze(Phi_cs(t,:,:)) * THETA;
     y = m(S(t,:),t);
     
-    e = 0.1;
+    e = 0.05;
     a = OMP(h,y-h*z(:,t-1),'STOPTOLERANCE',e);
     
     z(:, t) = z(:,t-1) + a;

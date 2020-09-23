@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 dt = 0.001;
 t = 0 : dt : 3;
@@ -36,25 +36,27 @@ t_shannon = t(sample_index_shannon);
 y_shannon = y(sample_index_shannon);
 
 figure
-% plot(t,y,'k','LineWidth',2)
-% hold on
-plot(t_shannon,y_shannon,'b-','LineWidth',2)
+plot(t,y,'k','LineWidth',2)
 hold on
-plot(t_shannon,y_shannon,'r.','markersize',30)
+L = plot(t_shannon,y_shannon,'--','LineWidth',1)
+set(L,'Color',[0.5 0.5 0.5])
+hold on
+plot(t_shannon,y_shannon,'r.','markersize',40)
 setplt('Traditional Sampling','$t$','$y(t)$','Signal_traditional_sampling',printfigure)
 
 
-CS_sampling_number = ceil(sampling_number * 0.3);
+CS_sampling_number = 30;
 CS_sample_index = sort(ceil(rand(1, CS_sampling_number) * N));
 t_sample = t(CS_sample_index);
 y_sample = y(CS_sample_index);
 
 figure
-% plot(t,y,'k','LineWidth',2)
-% hold on
-plot(t_sample,y_sample,'b-','LineWidth',2)
+plot(t,y,'k','LineWidth',2)
 hold on
-plot(t_sample,y_sample,'r.','markersize',30)
+L2 = plot(t_sample,y_sample,'--','LineWidth',1)
+set(L2,'Color',[0.5 0.5 0.5])
+hold on
+plot(t_sample,y_sample,'r.','markersize',40)
 setplt('CS Sampling','$t$','$y(t)$','Signal_CS_sampling',printfigure)
 
 Psi = zeros(N + 1, N + 1);
@@ -81,9 +83,9 @@ cvx_end
 y_re = Psi * a;
 
 figure
-plot(t(1001:1501),y(1001:1501),'k-','LineWidth',2)
+plot(t(1:1000),y(1:1000),'k-','LineWidth',5)
 hold on
-plot(t(1001:1501),y_re(1001:1501),'r--','LineWidth',2)
+plot(t(1:1000),y_re(1:1000),'r--','LineWidth',5)
 legend('Original Signal','Reconstructed Signal')
-setplt('Signal Reconsruction','$t$','$y(t)$','Signal_reconsruction',printfigure)
+setplt('Signal Reconstruction','$t$','$y(t)$','Signal_reconsruction',printfigure)
 

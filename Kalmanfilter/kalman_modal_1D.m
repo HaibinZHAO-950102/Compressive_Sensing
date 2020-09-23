@@ -83,7 +83,7 @@ for n = 1 : 0.5/Dt : N_time
     plot(x, f_e(n,:),'c-','LineWidth',5)
     hold on
     plot(p(S),m(:,n),'r.','Markersize',40)
-    legend('Signal','Signal Estimated','Measure Points')
+    legend('Signal','Signal Estimated','Measurements')
     xlim([0 10])
     ylim([-0.5 2.5])
     setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
@@ -108,6 +108,6 @@ for n = 1 : 0.5/Dt : N_time
     end
 end
 
-% f_e_kalman_modal_1D_24 = f_e';
-% save('f_e_kalman_modal_1D_24.mat','f_e_kalman_modal_1D_24')
+% f_e_kalman_modal_1D_36 = f_e';
+% save('f_e_kalman_modal_1D_36.mat','f_e_kalman_modal_1D_36')
 

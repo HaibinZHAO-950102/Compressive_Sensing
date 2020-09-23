@@ -6,7 +6,7 @@ printfigure = 1;
 
 load('Messwerte_rh_2D')
 
-M = 5;  % Anzahl der Messungen
+M = 11;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 x = 0 : dx : Lx;
@@ -36,7 +36,7 @@ nt = length(t);
 
 k = 0.1;  % Waermeleitfaehigkeit in cm^2/s
 
-N = 4;  % Grad
+N = M-1;  % Grad
 lambda = 0 : pi / Lx : N * pi / Lx;
 sigma = 0 : pi / Ly : N * pi / Ly;
 
@@ -157,5 +157,5 @@ for n = 1 : 5 : nt
     end
 end
 
-f_e_kf = f_e;
-save('f_e_kf.mat','f_e_kf')
+% f_e_kf = f_e;
+% save('f_e_kf.mat','f_e_kf')

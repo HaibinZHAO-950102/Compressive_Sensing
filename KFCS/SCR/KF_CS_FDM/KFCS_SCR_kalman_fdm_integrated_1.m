@@ -156,6 +156,6 @@ for n = 1 : 0.5/Dt : nt
     end
 end
 
-% f_e_mt_kf_fdm_integrated_1 = f_e_integrated_1;
-% save('f_e_mt_kf_fdm_integrated_1.mat','f_e_mt_kf_fdm_integrated_1')
+f_e_scr_kf_fdm_integrated_1 = f_e_integrated_1;
+save('f_e_scrt_kf_fdm_integrated_1.mat','f_e_scr_kf_fdm_integrated_1')
 

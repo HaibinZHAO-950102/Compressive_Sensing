@@ -39,15 +39,16 @@ end
 H = Phi;
 
 f_e = zeros(nx, nt);
+f_e = f(:,1);
 Ce = speye(nx) * 1;
 Cv = speye(length(S)) * 1;  % Messunsicherheit
-Cw = speye(nx) * 2;  % Systemrauschen
+Cw = speye(nx) * 5;  % Systemrauschen
 for n = 2 : nt
     n
     % dynamic gewichtung
-    Cv = eye(length(p_index)) * 0.5; 
+    Cv = eye(length(p_index)) * 2; 
     for i = 1 : size(S,2)
-        Cv(S(n,i),S(n,i)) = 0.05;
+        Cv(S(n,i),S(n,i)) = 0.03;
     end
     
     fp = U \ f_e(:, n-1);

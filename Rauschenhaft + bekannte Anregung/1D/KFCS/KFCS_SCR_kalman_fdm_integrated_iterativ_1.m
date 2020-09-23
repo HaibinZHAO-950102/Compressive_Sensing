@@ -4,7 +4,7 @@ clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('Messwerte_rh')
 load basis_ml
@@ -77,7 +77,7 @@ end
 
 
 f_e_integrated_1 = zeros(nx, nt);
-f_e_integrated_1(:,1) = f_rh(:,1);
+f_e_integrated_1(:,1) = f_sr(:,1);
 Ce = speye(nx) * 1;
 Cv = speye(length(p_index)) * 1;  % Messunsicherheit
 Cw = speye(nx) * 0.1;  % Systemrauschen
@@ -168,6 +168,6 @@ for n = 1 : 0.5/Dt : nt
     end
 end
 
-f_rh_scr_kf_fdm_integrated_iterativ_1 = f_e_integrated_1;
-save('f_rh_scr_kf_fdm_integrated_iterativ_1.mat','f_rh_scr_kf_fdm_integrated_iterativ_1')
+% f_rh_scr_kf_fdm_integrated_iterativ_1 = f_e_integrated_1;
+% save('f_rh_scr_kf_fdm_integrated_iterativ_1.mat','f_rh_scr_kf_fdm_integrated_iterativ_1')
 

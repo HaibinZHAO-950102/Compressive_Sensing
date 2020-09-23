@@ -2,11 +2,11 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('Messwerte')
 
-M = 12;  % Anzahl der Messungen
+M = 36;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 S = round(linspace(1,64,M));  % benutzte Sensoren
@@ -62,7 +62,7 @@ for n = 1 : 0.5/Dt : N_time
     plot(x, f_e(:,n),'c-','LineWidth',5)
     hold on
     plot(p(S),m(:,n),'r.','Markersize',40)
-    legend('Signal','Signal Estimated','Measure Points')
+    legend('Signal','Signal Estimated','Measurements')
     xlim([0 10])
     ylim([-0.5 2.5])
     setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
