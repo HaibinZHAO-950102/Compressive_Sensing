@@ -8,11 +8,11 @@ Length_x = 10;
 Length_y = 20;  
 Time = 20;   % Zetiraum
 dx = 0.25;
-dt = 0.5;
-step_time = 0.4;
+dy = 0.5;
+dt = 0.4;
 x = 0 : dx : Length_x;
-y = 0 : dt : Length_y;
-t = 0 : step_time : Time;
+y = 0 : dy : Length_y;
+t = 0 : dt : Time;
 nx = length(x);
 ny = length(y);
 nt = length(t);
@@ -32,10 +32,10 @@ caxis([0 2.5])
 pbaspect([1 Length_y/Length_x 0.5])
 setmesh('Initial Condition','$x$','$y$','$f$','T_2D_inhomo_fdm_inital_condition',1)
 
-A = (dx ^ 2 * dt ^ 2) / (dx ^ 2 * dt ^ 2 + 2 * k * step_time * (dx ^ 2 + dt ^ 2));
-B = (k * step_time * dx ^ 2) / (dx ^ 2 * dt ^ 2 + 2 * k * step_time * (dx ^ 2 + dt ^ 2));
-C = (k * step_time * dt ^ 2) / (dx ^ 2 * dt ^ 2 + 2 * k * step_time * (dx ^ 2 + dt ^ 2));
-D = - (step_time * dx ^ 2 * dt ^ 2) / (dx ^ 2 * dt ^ 2 + 2 * k * step_time * (dx ^ 2 + dt ^ 2));
+A = (dx ^ 2 * dy ^ 2) / (dx ^ 2 * dy ^ 2 + 2 * k * dt * (dx ^ 2 + dy ^ 2));
+B = (k * dt * dx ^ 2) / (dx ^ 2 * dy ^ 2 + 2 * k * dt * (dx ^ 2 + dy ^ 2));
+C = (k * dt * dy ^ 2) / (dx ^ 2 * dy ^ 2 + 2 * k * dt * (dx ^ 2 + dy ^ 2));
+D = - (dt * dx ^ 2 * dy ^ 2) / (dx ^ 2 * dy ^ 2 + 2 * k * dt * (dx ^ 2 + dy ^ 2));
 
 index = @(m,n,l) (l-1) * nx *ny + (n-1) * nx + m;    % Nummerierung
 
@@ -48,10 +48,10 @@ value_b = [];
 
 u = zeros(nx,ny,nt);
 for l = 1 : nt
-    u(3/dx+1,3/dt+1,l) = 1 * sin(t(l) - pi / 4) * dx / dt;
-    u(5/dx+1,10/dt+1,l) = -2 * sin(t(l)) / dx / dt;
-    u(7/dx+1,13/dt+1,l) = 0.02 * t(l) / dx / dt;
-    u(8/dx+1,18/dt+1,l) = 0.05 * t(l) / dx / dt;
+    u(3/dx+1,3/dy+1,l) = 1 * sin(t(l) - pi / 4) / dx / dy;
+    u(5/dx+1,10/dy+1,l) = -2 * sin(t(l)) / dx / dy;
+    u(7/dx+1,13/dy+1,l) = 0.02 * t(l) / dx / dy;
+    u(8/dx+1,18/dy+1,l) = 0.05 * t(l) / dx / dy;
 end
 
 
@@ -121,7 +121,7 @@ for n = 1 : nt
     pbaspect([1 Length_y/Length_x 0.5])
     setmesh('Temperature Distribution','$x$','$y$','$f$','T_2D_inhomo_fdm_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
-    txt = ['$t = ',num2str((n-1)*step_time),'$'];
+    txt = ['$t = ',num2str((n-1)*dt),'$'];
     TEXT = text(8,0,0.6,txt,'FontSize',30);
     set(TEXT,'Interpreter','latex')
     drawnow

@@ -1,35 +1,19 @@
-% mt + kalman integrated + iterative
-
-clc
-clear
-close all
-
+function kfcs(sigma_mu, sigma_sr, name)
 printfigure = 0;
 
-Sigma_sr = 0: 0.001 : 0.01% Systemrauschen
-Sigma_mu = 0: 0.01 : 0.1 % Messunsicherheit
 
 load phi
 load basis_ml
 
-for kkk = 1 : 10
-    for iii = 2 : 11
-        for jjj = 2 : 11
-           
-            
-            name = [num2str(kkk),'_',num2str(iii),'_',num2str(jjj)];
             LOAD = ['load ',name];
             eval(LOAD);
             
-            sigma_sr = Sigma_sr(iii);
-            sigma_mu = Sigma_mu(jjj);
 
             x = 0 : dx : 10;
             nx = length(x);
 
             Dt = 0.1;
             m_rh = m_rh(:,1:Dt/dt:end);
-
             nt = size(m_rh,2);
 
             % random select of sensors
@@ -97,9 +81,6 @@ for kkk = 1 : 10
             Cw = phi * eye(51) * phi' * sigma_sr;  % Systemrauschen
             
             for t = 2 : nt
-                clc
-                 [kkk, iii, jjj]
-                t
                 h = squeeze(Phi_cs(t,:,:)) * THETA;
                 y = m_rh(S(t,:),t);
 
@@ -146,10 +127,7 @@ for kkk = 1 : 10
 
             f_e_kfcs = f_e_integrated_1;
 
-            name = ['f_e_kfcs_',num2str(kkk),'_',num2str(iii),'_',num2str(jjj)];
+            name = ['f_e_kfcs_',name];
             save(name,'f_e_kfcs')
             
-        end
-    end
-end
 

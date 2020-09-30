@@ -2,11 +2,11 @@ clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('Messwerte_rh_2D')
 
-M = 11;  % Anzahl der Messungen
+M = 5;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 x = 0 : dx : Lx;
