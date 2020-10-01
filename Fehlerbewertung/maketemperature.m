@@ -1,4 +1,4 @@
-function maketemperature(sigma_mu, sigma_sr, name)
+function [f_sr,f_mu,k,Length,dt,dx,p,m_rh,p_index] = maketemperature(sigma_mu, sigma_sr)
 printfigure = 0;
 
 Length = 10;  % Stablaenge
@@ -82,9 +82,8 @@ f_mu = f_mu';
 
 f_sr = f_sr(:,1:10:end);
 f_mu = f_mu(:,1:10:end);
+m_rh = m(:,1:10:end);
 
 dt = 0.1;
 
-m_rh = m(:,1:10:end);
-save(name,'f_sr','f_mu','k','Length','dt','dx','p','m_rh','p_index','sigma_sr','sigma_mu')
 end

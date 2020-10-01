@@ -1,12 +1,7 @@
-function kalman(sigma_mu, sigma_sr, name)
+function f_e = kalman(sigma_mu, sigma_sr, f_sr,f_mu,k,Length,dt,dx,p,m_rh,p_index)
 
 
 load phi
-
-            
-            
-    LOAD = ['load ',name];
-    eval(LOAD);
 
 
     M = 12;  % Anzahl der Messungen
@@ -95,6 +90,4 @@ load phi
 %                 end
 %             end
 
-    name = ['f_e_',name];
-    save(name,'f_e')
 

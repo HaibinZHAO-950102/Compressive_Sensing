@@ -16,20 +16,14 @@ for kkk = 1 : 1000
             name = [num2str(kkk),'_',num2str(iii),'_',num2str(jjj)]
             
             processing = ['Generating Temperature Distribution']
-            maketemperature(sigma_mu, sigma_sr, name);
+            [f_sr,f_mu,k,Length,dt,dx,p,m_rh,p_index] = maketemperature(sigma_mu, sigma_sr);
             
             processing = ['Kalman Filter']
-            kalman(sigma_mu, sigma_sr, name);
+            f_e = kalman(sigma_mu, sigma_sr, f_sr,f_mu,k,Length,dt,dx,p,m_rh,p_index);
             
             processing = ['Kalman Filtered Compressive Sensing']
-            kfcs(sigma_mu, sigma_sr, name);
+            f_e_kfcs = kfcs(sigma_mu, sigma_sr, f_sr,f_mu,k,Length,dt,dx,p,m_rh,p_index);
 
-            LOAD = ['load ',name];
-            eval(LOAD);
-            LOAD = ['load f_e_',name];
-            eval(LOAD);
-            LOAD = ['load f_e_kfcs_',name];
-            eval(LOAD);
             
             e_kf = bewertung(f_e, f_sr);
             e_kfcs = bewertung(f_e_kfcs, f_sr);
@@ -43,12 +37,6 @@ for kkk = 1 : 1000
             xlswrite('error_kf.xlsx', write_kf);
             xlswrite('error_kfcs.xlsx', write_kfcs);
             
-            DELET = ['delete ',name,'.mat'];
-            eval(DELET);
-            DELET = ['delete f_e_',name,'.mat'];
-            eval(DELET);
-            DELET = ['delete f_e_kfcs_',name,'.mat'];
-            eval(DELET);
         end
     end
 end

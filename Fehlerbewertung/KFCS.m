@@ -1,13 +1,10 @@
-function kfcs(sigma_mu, sigma_sr, name)
+function f_e_kfcs = kfcs(sigma_mu, sigma_sr, f_sr,f_mu,k,Length,dt,dx,p,m_rh,p_index)
 printfigure = 0;
 
 
 load phi
 load basis_ml
 
-            LOAD = ['load ',name];
-            eval(LOAD);
-            
 
             x = 0 : dx : 10;
             nx = length(x);
@@ -126,8 +123,4 @@ load basis_ml
             end
 
             f_e_kfcs = f_e_integrated_1;
-
-            name = ['f_e_kfcs_',name];
-            save(name,'f_e_kfcs')
-            
 
