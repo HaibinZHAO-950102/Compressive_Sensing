@@ -28,15 +28,26 @@ for kkk = 1 : 1000
             e_kf = bewertung(f_e, f_sr);
             e_kfcs = bewertung(f_e_kfcs, f_sr);
             
-            read_kf = xlsread('error_kf.xlsx');
-            read_kfcs = xlsread('error_kfcs.xlsx');
+            read_kf = textread('error_kf.txt');
+            read_kfcs = textread('error_kfcs.txt');
             
-            write_kf = [read_kf;kkk, iii, jjj, e_kf];
-            write_kfcs = [read_kfcs;kkk, iii, jjj, e_kfcs];
+            write_kf = [read_kf(:,1:4);kkk, iii, jjj, e_kf];
+            write_kfcs = [read_kfcs(:,1:4);kkk, iii, jjj, e_kfcs];
             
-            xlswrite('error_kf.xlsx', write_kf);
-            xlswrite('error_kfcs.xlsx', write_kfcs);
+            fokf = fopen('error_kf.txt','wt');
+            for i = 1:size(write_kf, 1)
+                fprintf(fokf, '%f\t', write_kf(i,:));
+                fprintf(fokf, '\n');
+            end
+            fclose(fokf)
             
+            fokfcs = fopen('error_kfcs.txt','wt');
+            for i = 1:size(write_kfcs, 1)
+                fprintf(fokfcs, '%f\t', write_kfcs(i,:));
+                fprintf(fokfcs, '\n');
+            end
+            fclose(fokfcs)
+
         end
     end
 end
