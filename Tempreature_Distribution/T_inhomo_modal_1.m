@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 Length = 10;  % Stablaenge
 Time = 5;   % Zetiraum
@@ -25,7 +25,7 @@ phi = zeros(N + 1, N_length);  % Eigenfunktionen
 T = zeros(N + 1, N_time);  % Gewichtung
 
 plot(x,f(1,:),'LineWidth',5)
-setplt('Initial Condition','$x$','$f$','TV_inhomo_modal_inital_condition',printfigure)
+setplt('Anfangsbedingung','$x$','$f$','TV_inhomo_modal_inital_condition',printfigure)
 
 phi(1,:) = sqrt(1 / Length);
 for i = 2 : N + 1
@@ -42,7 +42,7 @@ end
 txt = ['$G = ',num2str(N),'$'];
 TEXT = text(8,0.4,txt,'FontSize',30);
 set(TEXT,'Interpreter','latex')
-setplt('Eigenfunctions','$x$','$value$','TV_inhomo_modal_Eigenfunctions',printfigure)
+setplt('Eigenfunktionen','$x$','','TV_inhomo_modal_Eigenfunctions',printfigure)
 
 for i = 1 : N + 1
     T(i, 1) = 0;
@@ -69,13 +69,13 @@ figure
 for n = 1 : 10 : N_time
     plot(x, f(n,:),'LineWidth',5)
     ylim([0 2])
-    setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
+    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    T = text(8,1.6,txt,'FontSize',30);
+    T = text(8,1.4,txt,'FontSize',60);
     set(T,'Interpreter','latex')
     txt = ['$G = ',num2str(N),'$'];
-    T = text(8,1.8,txt,'FontSize',30);
+    T = text(8,1.8,txt,'FontSize',60);
     set(T,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -93,15 +93,15 @@ end
 figure
 [X, Y] = meshgrid(x, t);
 mesh(X,Y,f)
-setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_inhomo_modal_Ttx_1',printfigure)
+setmesh('Temperaturverteilung','$x$','$t$','$f$','TV_inhomo_modal_Ttx_1',printfigure)
+% 
+% f_modal_inhomo_1 = f;
+% x_modal_inhomo_1 = x;
+% save('f_modal_inhomo_1.mat','x_modal_inhomo_1','f_modal_inhomo_1')
+% 
 
-f_modal_inhomo_1 = f;
-x_modal_inhomo_1 = x;
-save('f_modal_inhomo_1.mat','x_modal_inhomo_1','f_modal_inhomo_1')
 
-
-
-
+close all
 
 
 

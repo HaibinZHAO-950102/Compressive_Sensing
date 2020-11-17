@@ -6,7 +6,7 @@ printfigure = 1;
 
 load('Messwerte_rh_2D')
 
-M = 5;  % Anzahl der Messungen
+M = 8;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 dx = 2 * dx
@@ -89,18 +89,8 @@ invD =   sparse(listQi,listQj,Q,nx*ny,nx*ny)...
 
 % D = inv(invD);
    
-u = zeros(nx,ny,nt);
-for l = 1 : nt
-    u(round(3/dx)+1,round(3/dy)+1,l) = 1 * sin(t(l) - pi / 4) / dx / dy;
-    u(round(5/dx)+1,round(10/dy)+1,l) = -2 * sin(t(l)) / dx / dy;
-    u(round(7/dx)+1,round(13/dy)+1,l) = 0.02 * t(l) / dx / dy;
-    u(round(8/dx)+1,round(18/dy)+1,l) = 0.05 * t(l) / dx / dy;
-end
+load Anregung
 
-decorator = ['Making Stimulus']
-for l = 1 : nt
-    U(:,l) = reshape(u(:,:,l),nx*ny,1);
-end
 
 Phi = zeros(M^2,nx*ny);
 for i = 1 : M^2
@@ -143,17 +133,16 @@ f = zeros(nx*ny,nt);
 f(:,1) = reshape(F0,nx*ny,1);
 
 % for l = 2 : 201
-%     l
-%     f(:,l) = invD \ (f(:,l-1) + dt * U(:,l-1));
+%     f(:,l) = invD \ (f(:,l-1) + U(:,l-1));
 % end
 
 Ce = sparse(nx*ny, nx*ny);
-Cv = speye(M^2) * 0.1;  % Messunsicherheit
-Cw = Psi * eye(121)* Psi' * 1;
+Cv = speye(M^2) * 0.01;  % Messunsicherheit
+Cw = Psi * eye(121)* Psi' * 5;
 
 for t = 2 : nt
     t
-    fp = invD \ (f(:,t-1) + dt * U(:,t-1));
+    fp = invD \ f(:,t-1);
     Cp = invD \ Ce / invD' + Cw;
     K = Cp * H' / (H * Cp * H' + Cv);
     f(:,t) = (eye(size(K,1)) - K * H) * fp + K * reshape(m_rh(t,:,:),M^2,1);
@@ -174,13 +163,13 @@ for n = 1 : 5 : nt
     zlim([-1 3])
     caxis([-1 3])
     pbaspect([1 Ly/Lx 0.5])
-    setmesh('Temperature Distribution','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
+    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(n)),'$'];
-    TEXT = text(8,0,0.6,txt,'FontSize',30);
+    TEXT = text(8,0,0.5,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     txt = ['$M = ',num2str(M^2),'$'];
-    TEXT = text(8,0,1.5,txt,'FontSize',30);
+    TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -199,8 +188,27 @@ end
 % f_e_kf = f_e;
 % save('f_e_kf.mat','f_e_kf')
 
+t = 0 : 0.1:20;
+[Y,X] = meshgrid(y,x);
 
+for n = 0 : 5
+    timefe = 200 / 5 * n + 1;
 
+    figure
+    mesh(X,Y,squeeze(F_e(timefe,:,:)))
+    zlim([0 2.5])
+    caxis([0 2.5])
+    pbaspect([1 Ly/Lx 0.5])
+    set(gcf,'outerposition',get(0,'screensize'));
+    txt = ['$t = ',num2str(t(timefe)),'$'];
+    TEXT = text(8,0,1,txt,'FontSize',60);
+    set(TEXT,'Interpreter','latex')
+    drawnow
+    name = ['T_2D_FDM_64_shot_',num2str(n)];
+    setmesh('','$x$','$y$','$f$',name,printfigure)
+end
+
+close all
 
 
 

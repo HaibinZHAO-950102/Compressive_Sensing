@@ -35,7 +35,7 @@ end
 mesh(X,Y,squeeze(f(1,:,:)));
 caxis([0 2.5])
 pbaspect([1 Length_y/Length_x 0.5])
-setmesh('Initial Condition','$x$','$y$','$f$','T_2D_inhomo_modal_inital_condition',printfigure)
+setmesh('Anfangsbedingung','$x$','$y$','$f$','T_2D_inhomo_modal_inital_condition',printfigure)
 
 phi = zeros(N + 1, N_length_x);  % Eigenfunktionen
 psi = zeros(N + 1, N_length_y);  % Eigenfunktionen
@@ -62,7 +62,7 @@ end
 txt = ['$G = ',num2str(N),'$'];
 TEXT = text(8,0.4,txt,'FontSize',30);
 set(TEXT,'Interpreter','latex')
-setplt('Eigenfunctions $\varphi$','$x$','$value$','T_2D_inhomo_modal_Eigenfunctions_phi',printfigure)
+setplt('Eigenfunktionen $\varphi$','$x$','$value$','T_2D_inhomo_modal_Eigenfunctions_phi',printfigure)
 
 figure
 for i = 1 : N + 1
@@ -72,7 +72,7 @@ end
 txt = ['$G = ',num2str(N),'$'];
 TEXT = text(16,0.3,txt,'FontSize',30);
 set(TEXT,'Interpreter','latex')
-setplt('Eigenfunctions $\psi$','$y$','$value$','T_2D_inhomo_modal_Eigenfunctions_psi',printfigure)
+setplt('Eigenfunktionen $\psi$','$y$','$value$','T_2D_inhomo_modal_Eigenfunctions_psi',printfigure)
 
 for i = 1 : N + 1
     for j = 1 : N + 1
@@ -112,13 +112,13 @@ for n = 1 : 1 : N_time
     zlim([0 2.5])
     caxis([0 2.5])
     pbaspect([1 Length_y/Length_x 0.5])
-    setmesh('Temperature Distribution','$x$','$y$','$f$','T_2D_inhomo_modal_1',0)
+    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_inhomo_modal_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(n)),'$'];
-    TEXT = text(8,0,0.6,txt,'FontSize',30);
+    TEXT = text(8,0,0.5,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     txt = ['$G = ',num2str(N),'$'];
-    TEXT = text(8,0,1.5,txt,'FontSize',30);
+    TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -142,13 +142,14 @@ for n = 1 : 6
     pbaspect([1 Length_y/Length_x 0.5])
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(a)),'$'];
-    TEXT = text(8,0,0.6,txt,'FontSize',30);
+    TEXT = text(8,0,0.5,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     txt = ['$G = ',num2str(N),'$'];
-    TEXT = text(8,0,1.5,txt,'FontSize',30);
+    TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     drawnow
     name = ['T_2D_inhomo_modal_1_shot_',num2str(n)];
-    setmesh('Temperature Distribution','$x$','$y$','$f$',name,printfigure)
+    setmesh('','$x$','$y$','$f$',name,printfigure)
 end
 
+close all

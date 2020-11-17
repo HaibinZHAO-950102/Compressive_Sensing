@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 xd_1 = sort(rand(15,1)*10);
 yd_1 = 5 + xd_1 + randn(length(xd_1),1);
@@ -13,6 +13,7 @@ fun1 = @(p)f1(p,xd_1,yd_1);
 f2 = @(p,x,y) (p(1)*x+p(2)-y)'*(p(1)*x+p(2)-y);
 fun2 = @(p)f2(p,xd_1,yd_1);
 
+    
 p1_1 = fminsearch(fun1,[1,1]);
 p2_1 = fminsearch(fun2,[1,1]);
 
@@ -22,13 +23,13 @@ y2_1 = p2_1(1) * x + p2_1(2);
 
 plot(xd_1,yd_1,'k.','Markersize',40)
 hold on
-plot(x,y1_1,'b-','LineWidth',2)
+plot(x,y1_1,'b-','LineWidth',5)
 hold on
-plot(x,y2_1,'r-','LineWidth',2)
-legend('Data','L1 fit','L2 fit')
+plot(x,y2_1,'r-','LineWidth',5)
+legend('Data','L1-Norm','L2-Norm')
 xlim([0 10])
 ylim([0 20])
-setplt('Data Fitting 1','$x$','$y$','Data_Fitting_1',printfigure)
+setplt('lineare Approximation 1','$x$','$y$','Data_Fitting_1',printfigure)
 
 xd_2 = [xd_1 ; 1 ; 9];
 yd_2 = [yd_1 ; 18 ; 2];
@@ -45,12 +46,12 @@ y2_2 = p2_2(1) * x + p2_2(2);
 figure
 plot(xd_2,yd_2,'k.','Markersize',40)
 hold on
-plot(x,y1_2,'b-','LineWidth',2)
+plot(x,y1_2,'b-','LineWidth',5)
 hold on
-plot(x,y2_2,'r-','LineWidth',2)
-legend('Data','L1 fit','L2 fit')
+plot(x,y2_2,'r-','LineWidth',5)
+legend('Data','L1-Norm','L2-Norm')
 xlim([0 10])
 ylim([0 20])
-setplt('Data Fitting 2','$x$','$y$','Data_Fitting_2',printfigure)
+setplt('lineare Approximation 2','$x$','$y$','Data_Fitting_2',printfigure)
 
-
+close all

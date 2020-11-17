@@ -6,7 +6,7 @@ Sigma_sr = 0.001: 0.001 : 0.01;% Systemrauschen
 Sigma_mu = 0.01: 0.01 : 0.1; % Messunsicherheit
 
 
-for kkk = 1 : 1000
+for kkk = 251 : 300
     for iii = 1 : 10
         for jjj = 1 : 10
             clc

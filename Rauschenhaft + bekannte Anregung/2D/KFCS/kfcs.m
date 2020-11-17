@@ -147,7 +147,7 @@ for n = 1 : 0.5/Dt : nt
     ylim([-0.5 2.5])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
-    z = title('Temperature Distribution','fontsize',40);
+    z = title('Temperaturverteilung','fontsize',40);
     set(z,'Interpreter','latex')
     z = xlabel('$x$','fontsize',30);
     set(z,'Interpreter','latex')
@@ -182,13 +182,13 @@ for n = 1 : 5 : nt
     zlim([-1 3])
     caxis([-1 3])
     pbaspect([1 Ly/Lx 0.5])
-    setmesh('Temperature Distribution','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
+    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(n)),'$'];
-    TEXT = text(8,0,0.6,txt,'FontSize',30);
+    TEXT = text(8,0,0.5,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     txt = ['$M = 25$'];
-    TEXT = text(8,0,1.5,txt,'FontSize',30);
+    TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -204,6 +204,31 @@ for n = 1 : 5 : nt
     end
 end
 
-f_e_kfcs = f_e;
-save('f_e_kfcs.mat','f_e_kfcs')
+t = 0 : 0.1:20;
+[Y,X] = meshgrid(y,x);
 
+for n = 0 : 5
+    timefe = 200 / 5 * n + 1;
+
+    figure
+    mesh(X,Y,squeeze(F_e(timefe,:,:)))
+    zlim([-1 3])
+    caxis([-1 3])
+    pbaspect([1 Ly/Lx 0.5])
+    set(gcf,'outerposition',get(0,'screensize'));
+    txt = ['$t = ',num2str(t(timefe)),'$'];
+    TEXT = text(8,0,0.5,txt,'FontSize',60);
+    set(TEXT,'Interpreter','latex')
+    txt = ['$M = 25$'];
+    TEXT = text(8,0,1.8,txt,'FontSize',60);
+    set(TEXT,'Interpreter','latex')
+    drawnow
+    name = ['T_2D_KFCS_shot_',num2str(n)];
+    setmesh('','$x$','$y$','$f$',name,printfigure)
+end
+
+
+% f_e_kfcs = f_e;
+% save('f_e_kfcs.mat','f_e_kfcs')
+
+close all

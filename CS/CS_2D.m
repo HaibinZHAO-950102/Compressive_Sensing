@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 I_origin = imread('Image.png');
 I = imresize(I_origin,1/64);
@@ -59,3 +59,5 @@ imshow(I_re,[])
 if printfigure == 1
     imwrite(I_re, 'Image_reconstruction.png');
 end
+
+close all

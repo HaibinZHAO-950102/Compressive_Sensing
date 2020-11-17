@@ -4,7 +4,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('Messwerte_rh')
 load basis_ml
@@ -77,7 +77,7 @@ end
 
 
 f_e_integrated_2 = zeros(nx, nt);
-f_e_integrated_2(:,1) = f_mu(:,1);
+f_e_integrated_2(:,1) = f_sr(:,1);
 Ce = speye(nx) * 1;
 Cv = speye(length(p_index)) * 1;  % Messunsicherheit
 Cw = speye(nx) * 0.1;  % Systemrauschen
@@ -136,23 +136,15 @@ for n = 1 : 0.5/Dt : nt
     plot(x, f_e_integrated_2(:,n),'c-','LineWidth',5)
     hold on
     plot(x(p_index(S(n,:))),m_rh(S(n,:),n),'r.','Markersize',40)
-    legend('Signal','Signal Estimated','Measure Poins')
+    legend('Signal mit Systemrauschen','geschätztes Signal','Messungen')
     xlim([0 10])
     ylim([-0.5 2.5])
-    set(gca,'Fontsize',20)
-    set(gca,'fontname','times new Roman')
-    T = title('Temperature Distribution','fontsize',40);
-    set(T,'Interpreter','latex')
-    T = xlabel('$x$','fontsize',30);
-    set(T,'Interpreter','latex')
-    T = ylabel('$f$','fontsize',30);
-    set(T,'Interpreter','latex')
-    set(gcf,'outerposition',get(0,'screensize'));
+    setplt('Temperaturverteilung','$x$','$f$','',0)
     txt = ['$t = ',num2str((n-1)*Dt),'$'];
-    T = text(0.8,0.6,txt,'FontSize',30);
+    T = text(0.8,0.4,txt,'FontSize',60);
     set(T,'Interpreter','latex')
     txt = ['$M = ',num2str(number),'$'];
-    T = text(0.8,0.8,txt,'FontSize',30);
+    T = text(0.8,0.8,txt,'FontSize',60);
     set(T,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -168,6 +160,35 @@ for n = 1 : 0.5/Dt : nt
     end
 end
 
+t = 0 : 0.1:20;
+for n = 0 : 5
+    figure
+    timef = 2000 / 5 * n + 1
+    timefe = 200 / 5 * n + 1
+    plot(x, f_sr(:,timef),'k-','LineWidth',5)
+    hold on
+    plot(x, f_e_integrated_2(:,timefe),'c-','LineWidth',5)
+    hold on
+    plot(x(p_index(S(timefe,:))),m_rh(S(timefe,:),timefe),'r.','Markersize',40)
+    legend('Signal','geschätztes Signal','Messungen')
+
+    xlim([0 10])
+    ylim([-0.5 2.5])
+    set(gcf,'outerposition',get(0,'screensize'));
+    txt = ['$t = ',num2str(t(timefe)),'$'];
+    T = text(0.8,0.4,txt,'FontSize',60);
+    set(T,'Interpreter','latex')
+    txt = ['$M = ',num2str(number),'$'];
+    T = text(0.8,0.8,txt,'FontSize',60);
+    set(T,'Interpreter','latex')
+    drawnow
+    name = ['KFCS_rauschen_',num2str(number),'_shot_',num2str(n+1)];
+    setplt('','$x$','$f$',name,printfigure)
+end
+
+
+
 % f_rh_scr_kf_fdm_integrated_iterativ_2 = f_e_integrated_2;
 % save('f_rh_scr_kf_fdm_integrated_iterativ_2.mat','f_rh_scr_kf_fdm_integrated_iterativ_2')
 
+close all

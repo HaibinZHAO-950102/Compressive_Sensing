@@ -30,7 +30,7 @@ end
 mesh(X,Y,squeeze(f(:,:,1)));
 caxis([0 2.5])
 pbaspect([1 Length_y/Length_x 0.5])
-setmesh('Initial Condition','$x$','$y$','$f$','T_2D_inhomo_fdm_inital_condition',1)
+setmesh('Anfangsbedingung','$x$','$y$','$f$','T_2D_inhomo_fdm_inital_condition',1)
 
 A = (dx ^ 2 * dy ^ 2) / (dx ^ 2 * dy ^ 2 + 2 * k * dt * (dx ^ 2 + dy ^ 2));
 B = (k * dt * dx ^ 2) / (dx ^ 2 * dy ^ 2 + 2 * k * dt * (dx ^ 2 + dy ^ 2));
@@ -119,10 +119,10 @@ for n = 1 : nt
     zlim([-1 3])
     caxis([-1 3])
     pbaspect([1 Length_y/Length_x 0.5])
-    setmesh('Temperature Distribution','$x$','$y$','$f$','T_2D_inhomo_fdm_1',0)
+    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_inhomo_fdm_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*dt),'$'];
-    TEXT = text(8,0,0.6,txt,'FontSize',30);
+    TEXT = text(8,0,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -139,17 +139,19 @@ end
     
 
 figure
-for n = 1 : 6
-    a = round((nt - 1) / 5 * (n - 1)) + 1;
+for n = 1 : 10
+    a = round((nt - 1) / 9 * (n - 1)) + 1;
     mesh(X,Y,squeeze(f(:,:,a)))
     zlim([-1 3])
     caxis([-1 3])
     pbaspect([1 Length_y/Length_x 0.5])
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(a)),'$'];
-    TEXT = text(8,0,0.6,txt,'FontSize',30);
+    TEXT = text(8,0,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     drawnow
     name = ['T_2D_inhomo_fdm_2_shot_',num2str(n)];
-    setmesh('Temperature Distribution','$x$','$y$','$f$',name,printfigure)
+    setmesh('','$x$','$y$','$f$',name,printfigure)
 end
+
+close all

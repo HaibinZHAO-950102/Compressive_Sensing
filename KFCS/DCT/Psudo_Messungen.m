@@ -3,7 +3,7 @@ clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('CS_DCT_L1');
 load('Messwerte');

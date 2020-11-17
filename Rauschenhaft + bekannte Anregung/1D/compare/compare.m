@@ -23,9 +23,9 @@ f5 = f_rh_scr_kf_fdm_integrated_iterativ_2;
 NAME = 'comapre noisy signal';
 l1 = 'KF 12';
 l3 = 'KF 24';
-l2 = 'ramdom sampling KF';
-l4 = 'KFCS';
-l5 = 'KFCS iterativ';
+l2 = 'rsKF 12';
+l4 = 'KFCS 12';
+l5 = 'KFCS iterativ 12';
 
 
 
@@ -67,8 +67,8 @@ plot(t,error1,'r-','LineWidth',5)
 hold on
 plot(t,error2,'b-','LineWidth',5)
 hold on
-plot(t,error3,'g-','LineWidth',5)
-hold on
+% plot(t,error3,'g-','LineWidth',5)
+% hold on
 plot(t,error4,'c-','LineWidth',5)
 hold on
 plot(t,error5,'m-','LineWidth',5)
@@ -77,11 +77,11 @@ plot(t,ones(length(t))*mean_error_1,'r-.','LineWidth',2)
 hold on
 plot(t,ones(length(t))*mean_error_2,'b-.','LineWidth',2)
 hold on
-plot(t,ones(length(t))*mean_error_3,'g-.','LineWidth',2)
-hold on
+% plot(t,ones(length(t))*mean_error_3,'g-.','LineWidth',2)
+% hold on
 plot(t,ones(length(t))*mean_error_4,'c-.','LineWidth',2)
 hold on
 plot(t,ones(length(t))*mean_error_5,'m-.','LineWidth',2)
 hold on
-legend(l1,l2,l3,l4,l5)
-setplt('Error','$t$','Error',[NAME,' error'],printfigure)
+legend(l1,l2,l4,l5)
+setplt('Fehler','$t$','Fehler',[NAME,' error'],printfigure)

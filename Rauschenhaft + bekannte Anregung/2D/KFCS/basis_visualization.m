@@ -46,7 +46,7 @@ imshow(show_koe)
 imwrite(show_koe,'show_coefficient.png')
 
 
-index = randperm(64,30);
+index = sort(randperm(64,30));
 phi = zeros(30,64);
 for i = 1 : 30
     phi(i,index(i)) = 1;
@@ -97,7 +97,24 @@ imwrite(show_y,'show_y.png')
     
     
     
-    
+a = max(max(phi));
+b = min(min(phi));
+
+phi = (phi - b) / (a-b);
+scale = 200;
+
+show_phi = zeros(size(phi) * scale);
+
+for i = 1 : size(phi,1)
+    for j = 1 : size(phi,2)
+        show_phi((i-1)*scale+1:i*scale,(j-1)*scale+1:j*scale) = phi(i,j);
+    end
+end
+
+figure
+imshow(show_phi)
+imwrite(show_phi,'show_phi.png')
+
     
     
     

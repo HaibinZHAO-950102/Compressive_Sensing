@@ -6,7 +6,7 @@ printfigure = 1;
 
 load('Messwerte')
 
-M = 36;  % Anzahl der Messungen
+M = 40;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 S = round(linspace(1,64,M));  % benutzte Sensoren
@@ -41,7 +41,7 @@ H = Phi;
 f_e = zeros(nx, nt);
 f_e(:,1) = f(:,1);
 Ce = speye(nx) * 1;
-Cv = speye(length(S)) * 0.1;  % Messunsicherheit
+Cv = speye(length(S)) * 0.01;  % Messunsicherheit
 Cw = speye(nx) * 1;  % Systemrauschen
 for t = 2 : N_time
     fp = U \ f_e(:, t-1);
@@ -62,16 +62,16 @@ for n = 1 : 0.5/Dt : N_time
     plot(x, f_e(:,n),'c-','LineWidth',5)
     hold on
     plot(p(S),m(:,n),'r.','Markersize',40)
-    legend('Signal','Signal Estimated','Measurements')
+    legend('Signal','geschätztes Signal','Messungen')
     xlim([0 10])
     ylim([-0.5 2.5])
-    setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
+    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*Dt),'$'];
-    T = text(0.8,0.6,txt,'FontSize',30);
+    T = text(0.8,0.4,txt,'FontSize',60);
     set(T,'Interpreter','latex')
     txt = ['$M = ',num2str(M),'$'];
-    T = text(0.8,0.8,txt,'FontSize',30);
+    T = text(0.8,0.8,txt,'FontSize',60);
     set(T,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -87,6 +87,32 @@ for n = 1 : 0.5/Dt : N_time
     end
 end
 
-% f_e_kalman_fdm_1D_40 = f_e;
-% save('f_e_kalman_fdm_1D_40.mat','f_e_kalman_fdm_1D_40')
+t = 0 : 0.1:20;
+for n = 0 : 5
+    figure
+    timef = 2000 / 5 * n + 1
+    timefe = 200 / 5 * n + 1
+    plot(x, f(:,timef),'k-','LineWidth',5)
+    hold on
+    plot(x, f_e(:,timefe),'c-','LineWidth',5)
+    hold on
+    plot(p(S),m(:,timefe),'r.','Markersize',40)
+    legend('Signal','geschätztes Signal','Messungen')
 
+    xlim([0 10])
+    ylim([-0.5 2.5])
+    set(gcf,'outerposition',get(0,'screensize'));
+    txt = ['$t = ',num2str(t(timefe)),'$'];
+    T = text(0.8,0.4,txt,'FontSize',60);
+    set(T,'Interpreter','latex')
+    txt = ['$M = ',num2str(M),'$'];
+    T = text(0.8,0.8,txt,'FontSize',60);
+    set(T,'Interpreter','latex')
+    drawnow
+    name = ['KF_FDM_1D_',num2str(M),'_shot_',num2str(n+1)];
+    setplt('','$x$','$f$',name,printfigure)
+end
+
+f_e_kalman_fdm_1D_64 = f_e;
+save('f_e_kalman_fdm_1D_64.mat','f_e_kalman_fdm_1D_64')
+close all

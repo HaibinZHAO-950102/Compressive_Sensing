@@ -1,10 +1,8 @@
-% meine approximation
-
 clc
 clear
 close all
 
-printfigure = 1;
+printfigure = 0;
 
 load('Messwerte')
 load basis_ml

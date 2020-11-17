@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 load('Messwerte_rh_2D')
 
@@ -135,13 +135,13 @@ for n = 1 : 5 : nt
     zlim([-1 3])
     caxis([-1 3])
     pbaspect([1 Ly/Lx 0.5])
-    setmesh('Temperature Distribution','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
+    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(n)),'$'];
-    TEXT = text(8,0,0.6,txt,'FontSize',30);
+    TEXT = text(8,0,0.5,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     txt = ['$M = ',num2str(M^2),'$'];
-    TEXT = text(8,0,1.5,txt,'FontSize',30);
+    TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -157,5 +157,32 @@ for n = 1 : 5 : nt
     end
 end
 
-% f_e_kf = f_e;
-% save('f_e_kf.mat','f_e_kf')
+f_e_kf_64 = f_e;
+save('f_e_kf_64.mat','f_e_kf_64')
+
+t = 0 : 0.1:20;
+[Y,X] = meshgrid(y,x);
+
+for n = 0 : 5
+    timefe = 200 / 5 * n + 1;
+
+    figure
+    mesh(X,Y,squeeze(F_e(timefe,:,:)))
+    zlim([-1 3])
+    caxis([-1 3])
+    pbaspect([1 Ly/Lx 0.5])
+    set(gcf,'outerposition',get(0,'screensize'));
+    txt = ['$t = ',num2str(t(timefe)),'$'];
+    TEXT = text(8,0,0.5,txt,'FontSize',60);
+    set(TEXT,'Interpreter','latex')
+    txt = ['$M = ',num2str(M^2),'$'];
+    TEXT = text(8,0,1.8,txt,'FontSize',60);
+    set(TEXT,'Interpreter','latex')
+    drawnow
+    name = ['T_2D_modal_25_shot_',num2str(n)];
+    setmesh('','$x$','$y$','$f$',name,printfigure)
+end
+
+close all
+
+

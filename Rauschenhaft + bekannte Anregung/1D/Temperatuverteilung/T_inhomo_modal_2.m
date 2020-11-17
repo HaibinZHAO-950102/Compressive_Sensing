@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 Length = 10;  % Stablaenge
 Time = 20;   % Zetiraum
@@ -95,14 +95,14 @@ for n = 1 : 0.5/dt : nt
     hold on
     plot(x, f_sr(n,:),'LineWidth',5)
     ylim([-0.5 2.5])
-    legend('Signal with measurement uncertainty','Signal with system noise')
-    setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
+    legend('Signal mit Systemrauschen und Messfehler','Signal mit Systemrauschen')
+    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*dt),'$'];
-    TEXT = text(8,1.6,txt,'FontSize',30);
+    TEXT = text(8,1.1,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     txt = ['$G = ',num2str(N),'$'];
-    TEXT = text(8,1.8,txt,'FontSize',30);
+    TEXT = text(8,1.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -120,18 +120,45 @@ end
 figure
 [X, Y] = meshgrid(x, t);
 mesh(X,Y,f_mu)
-setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_rauschenhaft',printfigure)
+setmesh('Temperaturverteilung','$x$','$t$','$f$','TV_rauschenhaft',printfigure)
+
+t = 0 : 0.1:20;
+for n = 0 : 5
+    figure
+    timef = 2000 / 5 * n + 1
+    timefe = 200 / 5 * n + 1
+    plot(x, f_mu(timef,:),'LineWidth',3)
+    hold on
+    plot(x, f_sr(timef,:),'LineWidth',5)
+    legend('Signal mit Systemrauschen und Messfehler','Signal mit Systemrauschen')
+
+    xlim([0 10])
+    ylim([-0.5 2.5])
+    set(gcf,'outerposition',get(0,'screensize'));
+    txt = ['$t = ',num2str(t(timefe)),'$'];
+    T = text(0.8,0.4,txt,'FontSize',60);
+    set(T,'Interpreter','latex')
+    txt = ['$G = ',num2str(N),'$'];
+    T = text(0.8,0.8,txt,'FontSize',60);
+    set(T,'Interpreter','latex')
+    drawnow
+    name = ['TV_1D_rauchen_',num2str(N),'_shot_',num2str(n+1)];
+    setplt('','$x$','$f$',name,printfigure)
+end
+
 
 
 % Measurement
 % positions
-p_index = round(linspace(1,nx,64)); % 64 sensors from nx points
-p = x(p_index);                     % positions of 51 sensors from 0 - Length
-m = f_mu(:,p_index)';                  % their measurements
+% p_index = round(linspace(1,nx,64)); % 64 sensors from nx points
+% p = x(p_index);                     % positions of 51 sensors from 0 - Length
+% m = f_mu(:,p_index)';                  % their measurements
+% 
+% f_sr = f_sr';
+% f_mu = f_mu';
+% 
+% m_rh = m;
+% save('Messwerte_rh.mat','f_sr','f_mu','k','Length','dt','dx','p','m_rh','p_index','sigma_sr','sigma_mu')
+% 
 
-f_sr = f_sr';
-f_mu = f_mu';
-
-m_rh = m;
-save('Messwerte_rh.mat','f_sr','f_mu','k','Length','dt','dx','p','m_rh','p_index','sigma_sr','sigma_mu')
-
+close all

@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 Length = 10;  % Stablaenge
 Time = 20;   % Zetiraum
@@ -66,11 +66,11 @@ end
 figure
 for n = 1 : 4 : N_time
     plot(x, f(n,:),'LineWidth',5)
-    ylim([0 2])
-    setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
+    ylim([-0.5 2.5])
+    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    T = text(8,1.6,txt,'FontSize',30);
+    T = text(8,1.6,txt,'FontSize',60);
     set(T,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -88,12 +88,12 @@ end
 figure
 [X, Y] = meshgrid(x, t);
 mesh(X,Y,f)
-setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_inhomo_fdm_2_Ttx',printfigure)
+setmesh('Temperaturverteilung','$x$','$t$','$f$','TV_inhomo_fdm_2_Ttx',printfigure)
 
-f_fdm_inhomo_2 = f;
-x_fdm_inhomo_2 = x;
-save('f_fdm_inhomo_2.mat','x_fdm_inhomo_2','f_fdm_inhomo_2')
+% f_fdm_inhomo_2 = f;
+% x_fdm_inhomo_2 = x;
+% save('f_fdm_inhomo_2.mat','x_fdm_inhomo_2','f_fdm_inhomo_2')
+% 
+% save('Anregung_FDM','u')
 
-save('Anregung_FDM','u')
-
-
+close all

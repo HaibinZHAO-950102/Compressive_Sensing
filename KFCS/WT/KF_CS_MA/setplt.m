@@ -8,8 +8,10 @@ function setplt(figurename,xname,yname,filename,printfigure)
     T = ylabel(yname,'fontsize',30);
     set(T,'Interpreter','latex')
     set(gcf,'outerposition',get(0,'screensize'));
+    
     if printfigure == 1
-        print(filename,'-dpng','-r600')
+        name = [filename,'.png'];
+        exportgraphics(gcf, name,'Resolution',200)
     end
     drawnow
 end

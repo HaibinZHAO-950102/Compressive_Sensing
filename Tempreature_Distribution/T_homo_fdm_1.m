@@ -2,7 +2,7 @@ clc
 clear
 close all
 
-printfigure = 0;
+printfigure = 1;
 
 Length = 10;  % Stablaenge
 Time = 200;   % Zetiraum
@@ -61,13 +61,13 @@ for n = 1 : 4 : N_time
     plot(x, f(n,:),'LineWidth',5)
     xlim([0 10])
     ylim([-1 1])
-    setplt('Temperature Distribution','$x$','$f$','Temperature Distribution',0)
+    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    TEXT = text(8,0.6,txt,'FontSize',30);
+    TEXT = text(8,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
-    T = text(8,1.6,txt,'FontSize',30);
+    T = text(8,1.6,txt,'FontSize',60);
     set(T,'Interpreter','latex')
     drawnow
     frame=getframe(gcf);
@@ -82,12 +82,13 @@ for n = 1 : 4 : N_time
     end
 end
 
-% figure
-% [X, Y] = meshgrid(x, t);
-% mesh(X,Y,f)
-% setmesh('Tempreature Distribution','$x$','$t$','$f$','TV_homo_fdm_Ttx_1',printfigure)
+figure
+[X, Y] = meshgrid(x, t);
+mesh(X,Y,f)
+setmesh('Temperaturverteilung','$x$','$t$','$f$','TV_homo_fdm_Ttx_1',printfigure)
 % 
 % 
 % f_fdm_homo_1 = f;
 % x_fdm_homo_1 = x;
 % save('f_fdm_homo_1.mat','x_fdm_homo_1','f_fdm_homo_1')
+close all
