@@ -96,7 +96,7 @@ for n = 1 : 0.5/dt : nt
     plot(x, f_sr(n,:),'LineWidth',5)
     ylim([-0.5 2.5])
     legend('Signal mit Systemrauschen und Messfehler','Signal mit Systemrauschen')
-    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
+    setplt('','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*dt),'$'];
     TEXT = text(8,1.1,txt,'FontSize',60);
@@ -120,7 +120,7 @@ end
 figure
 [X, Y] = meshgrid(x, t);
 mesh(X,Y,f_mu)
-setmesh('Temperaturverteilung','$x$','$t$','$f$','TV_rauschenhaft',printfigure)
+setmesh('','$x$','$t$','$f$','TV_rauschenhaft',printfigure)
 
 t = 0 : 0.1:20;
 for n = 0 : 5

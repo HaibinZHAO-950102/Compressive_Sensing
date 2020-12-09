@@ -13,11 +13,11 @@ fm = max(f1,f2);
 y = 2 * sin(2 * pi * f1 * t) + sin(2 * pi * f2 * t);
 
 plot(t,y,'k','LineWidth',2)
-setplt('Signal','$t$','$y(t)$','Signal',printfigure)
+setplt('','$t$','$y(t)$','Signal',printfigure)
 
 figure
 plot(t(1001:1501),y(1001:1501),'k','LineWidth',2)
-setplt('Signal scaled','$t$','$y(t)$','Signal_scaled',printfigure)
+setplt('','$t$','$y(t)$','Signal_scaled',printfigure)
 
 A = fft(y);
 df = 1 / dt / N;
@@ -27,7 +27,7 @@ A = [A(ceil((N+1)/2):N+1),A(1:ceil((N+1)/2)-1)];
 figure
 plot(f,abs(A),'k','LineWidth',3)
 xlim([-1.5*fm 1.5*fm])
-setplt('Spektrum','$f$','$|A(f)|$','Signal_Spectrum',printfigure)
+setplt('','$f$','$|A(f)|$','Signal_Spectrum',printfigure)
 
 sampling_frequence = 2*fm;
 sampling_number = 3 * sampling_frequence;
@@ -42,7 +42,7 @@ L = plot(t_shannon,y_shannon,'--','LineWidth',1)
 set(L,'Color',[0.5 0.5 0.5])
 hold on
 plot(t_shannon,y_shannon,'r.','markersize',40)
-setplt('Traditionelle Abtastung','$t$','$y(t)$','Signal_traditional_sampling',printfigure)
+setplt('','$t$','$y(t)$','Signal_traditional_sampling',printfigure)
 
 
 CS_sampling_number = 30;
@@ -57,7 +57,7 @@ L2 = plot(t_sample,y_sample,'--','LineWidth',1)
 set(L2,'Color',[0.5 0.5 0.5])
 hold on
 plot(t_sample,y_sample,'r.','markersize',40)
-setplt('CS Abtastung','$t$','$y(t)$','Signal_CS_sampling',printfigure)
+setplt('','$t$','$y(t)$','Signal_CS_sampling',printfigure)
 
 Psi = zeros(N + 1, N + 1);
 for i = 1 : N + 1
@@ -87,6 +87,5 @@ plot(t(1:1000),y(1:1000),'k-','LineWidth',5)
 hold on
 plot(t(1:1000),y_re(1:1000),'r--','LineWidth',5)
 legend('Originales Signal','Rekonstruiertes Signal')
-setplt('Signalrekonstruktion','$t$','$y(t)$','Signal_reconsruction',printfigure)
-
+setplt('','$t$','$y(t)$','Signal_reconsruction',printfigure)
 close all

@@ -69,7 +69,7 @@ for n = 1 : 0.5/Dt : nt
     legend('Signal mit Systemrauschen','geschätztes Signal','Messungen')
     xlim([0 10])
     ylim([-0.5 2.5])
-    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
+    setplt('','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*Dt),'$'];
     T = text(0.8,0.4,txt,'FontSize',60);

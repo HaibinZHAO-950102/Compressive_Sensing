@@ -22,7 +22,7 @@ nt = size(m,2);
 
 
 
-for kkk = 7 : 10
+for kkk = [1,7,10]
     
     % random select of sensors
 number = 12;
@@ -186,10 +186,10 @@ for n = 0 : 5
     setplt('','$x$','$f$',name,printfigure)
 end
 
-eval(['f_e_wt_kf_naiv_kkk',num2str(G2G1),' = f_e_wt_kf_naiv;']);
-
-save(['f_e_wt_kf_naiv_kkk',num2str(G2G1),'.mat'],['f_e_wt_kf_naiv_kkk',num2str(G2G1)]);
-
+% eval(['f_e_wt_kf_naiv_kkk',num2str(G2G1),' = f_e_wt_kf_naiv;']);
+% 
+% save(['f_e_wt_kf_naiv_kkk',num2str(G2G1),'.mat'],['f_e_wt_kf_naiv_kkk',num2str(G2G1)]);
+% 
 close all
 
 end

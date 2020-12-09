@@ -135,7 +135,7 @@ for n = 1 : 5 : nt
     zlim([-1 3])
     caxis([-1 3])
     pbaspect([1 Ly/Lx 0.5])
-    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
+    setmesh('','$x$','$y$','$f$','T_2D_inhomo_modal_2',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(n)),'$'];
     TEXT = text(8,0,0.5,txt,'FontSize',60);
@@ -143,6 +143,12 @@ for n = 1 : 5 : nt
     txt = ['$M = ',num2str(M^2),'$'];
     TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    zticks([-1 1 3])
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
+    zticks([-1 1 3])
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);
@@ -168,16 +174,22 @@ for n = 0 : 5
 
     figure
     mesh(X,Y,squeeze(F_e(timefe,:,:)))
-    zlim([0 2.5])
-    caxis([0 2.5])
+    zlim([-1 3])
+    caxis([-1 3])
     pbaspect([1 Ly/Lx 0.5])
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str(t(timefe)),'$'];
     TEXT = text(8,0,0.5,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
-    txt = ['$G = ',num2str(N),'$'];
+    txt = ['$M = ',num2str(64),'$'];
     TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    zticks([-1 1 3])
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
+    zticks([-1 1 3])
     drawnow
     name = ['T_2D_modal_64_shot_',num2str(n)];
     setmesh('','$x$','$y$','$f$',name,printfigure)

@@ -88,7 +88,7 @@ for n = 1 : 0.5/Dt : N_time
     legend('Signal mit Systemrauschen','geschätztes Signal','Messungen')
     xlim([0 10])
     ylim([-0.5 2.5])
-    setplt('Temperaturverteilung','$x$','$f$','',0)
+    setplt('','$x$','$f$','',0)
     txt = ['$t = ',num2str((n-1)*Dt),'$'];
     T = text(0.8,0.4,txt,'FontSize',60);
     set(T,'Interpreter','latex')

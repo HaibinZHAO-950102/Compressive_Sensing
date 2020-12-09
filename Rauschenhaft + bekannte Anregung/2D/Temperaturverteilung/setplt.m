@@ -1,5 +1,5 @@
 function setplt(figurename,xname,yname,filename,printfigure)
-    set(gca,'Fontsize',40)
+    set(gca,'Fontsize',60)
     set(gca,'fontname','times new Roman')
     T = title(figurename,'fontsize',80);
     set(T,'Interpreter','latex')

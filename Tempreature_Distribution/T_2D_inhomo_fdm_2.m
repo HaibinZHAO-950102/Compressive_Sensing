@@ -58,6 +58,7 @@ end
 for m = 2 : nx - 1
     for n = 2 : ny - 1
         for l = 2 : nt
+            m
             row = [row ; index(m,n,l); index(m,n,l); index(m,n,l); index(m,n,l); index(m,n,l); index(m,n,l)];
             colum = [colum; index(m,n,l); index(m,n,l-1); index(m,n-1,l); index(m,n+1,l); index(m-1,n,l); index(m+1,n,l)];
             value = [value; -1; A; B; B; C; C];
@@ -72,6 +73,7 @@ length_edge_x = [1, nx];
 for m = 1 : 2
     for n = 1 : ny
         for l = 2 : nt
+            m
             row = [row ; index(length_edge_x(m),n,l); index(length_edge_x(m),n,l)];
             colum = [colum; index(length_edge_x(m),n,l); index(length_edge_x(m)-sign(length_edge_x(m)-nx/2),n,l)];
             value = [value; -1; 1];
@@ -83,6 +85,7 @@ length_edge_y = [1, ny];
 for m = 2 : nx - 1
     for n = 1 : 2
         for l = 2 : nt
+            m
             row = [row ; index(m,length_edge_y(n),l); index(m,length_edge_y(n),l)];
             colum = [colum; index(m,length_edge_y(n),l); index(m,length_edge_y(n)-sign(length_edge_y(n)-ny/2),l)];
             value = [value; -1; 1];
@@ -92,6 +95,7 @@ end
 
 for m = 1 : nx
     for n = 1 : ny
+        m
         row = [row ; index(m,n,1)];
         colum = [colum; index(m,n,1)];
         value = [value; 1];
@@ -119,11 +123,17 @@ for n = 1 : nt
     zlim([-1 3])
     caxis([-1 3])
     pbaspect([1 Length_y/Length_x 0.5])
-    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_inhomo_fdm_1',0)
+    setmesh('','$x$','$y$','$f$','T_2D_inhomo_fdm_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*dt),'$'];
     TEXT = text(8,0,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    zticks([-1 1 3])
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
+    zticklabels({'-1','1','3'})
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);
@@ -139,8 +149,8 @@ end
     
 
 figure
-for n = 1 : 10
-    a = round((nt - 1) / 9 * (n - 1)) + 1;
+for n = 1 : 6
+    a = round((nt - 1) / 5 * (n - 1)) + 1;
     mesh(X,Y,squeeze(f(:,:,a)))
     zlim([-1 3])
     caxis([-1 3])
@@ -149,6 +159,12 @@ for n = 1 : 10
     txt = ['$t = ',num2str(t(a)),'$'];
     TEXT = text(8,0,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    zticks([-1 1 3])
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
+    zticklabels({'-1','1','3'})
     drawnow
     name = ['T_2D_inhomo_fdm_2_shot_',num2str(n)];
     setmesh('','$x$','$y$','$f$',name,printfigure)

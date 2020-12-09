@@ -81,7 +81,7 @@ set(T,'Interpreter','latex')
 txt = ['$K = 10$'];
 T = text(0.8,0.4,txt,'FontSize',60);
 set(T,'Interpreter','latex')
-setplt('Temperaturverteilung','$x$','$f$','K-term Change Approximation WT',printfigure)
+setplt('','$x$','$f$','K-term Change Approximation WT',printfigure)
 
 
 
@@ -128,10 +128,10 @@ hold on
 plot(x(S),y_2(S),'r.','Markersize',40)
 xlim([0 10])
 ylim([0 2])
-txt = ['$M = 24$'];
+txt = ['$M = 12$'];
 T = text(0.8,0.8,txt,'FontSize',60);
 set(T,'Interpreter','latex')
 legend('t = 20','t = 19.5','Signal aus CS','Messungen')
-setplt('Rekonstruiertes Signal aus CS','$x$','$f$','CS Change Recovery WT',printfigure)
+setplt('','$x$','$f$','CS Change Recovery WT',printfigure)
 
 close all

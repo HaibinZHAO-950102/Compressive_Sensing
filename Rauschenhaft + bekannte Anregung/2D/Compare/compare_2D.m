@@ -17,9 +17,9 @@ f3 = f_e_kfcs;
 
 
 NAME = 'comapre KF and KFCS';
-l1 = '2D KF 25';
+l1 = '2D KF mit 25 Sensoren';
 l2 = '2D KF 64';
-l3 = '2D KFCS 25';
+l3 = '2D KFCS mit 25 Messungen';
 
 
 x = 1 : 128^2;
@@ -58,4 +58,5 @@ hold on
 plot(t,ones(length(t))*mean_error_3,'k-.','LineWidth',2)
 hold on
 legend(l1,l3)
-setplt('Fehler','$t$','Fehler',[NAME,' error'],printfigure)
+setplt('','$t$','$\epsilon$',[NAME,' error'],printfigure)
+ close all

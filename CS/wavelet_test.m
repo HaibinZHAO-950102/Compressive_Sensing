@@ -21,9 +21,9 @@ y_wt = Phi_wt * x';
 figure
 plot(-y_wt,'r.')
 xlim([0 2048])
-setplt('Koeffizienten mit WT-Basis','$n$','$z$','Wavelet Matrix',printfigure)
+setplt('','$n$','$z$','Wavelet Matrix',printfigure)
 figure
 plot(y2,'b.')
 xlim([0 2048])
-setplt('Koeffizienten mit WT-Basis','$n$','$z$','Wavelet Transformation',printfigure)
+setplt('','$n$','$z$','Wavelet Transformation',printfigure)
  close all

@@ -52,4 +52,6 @@ hold on
 plot(t,ones(length(t))*mean_error_2,'b-.','LineWidth',2)
 hold on
 legend(l1,l2)
-setplt('Fehler','$t$','Fehler',[NAME,' error'],printfigure)
+setplt('','$t$','$\epsilon$',[NAME,' error'],printfigure)
+
+close all

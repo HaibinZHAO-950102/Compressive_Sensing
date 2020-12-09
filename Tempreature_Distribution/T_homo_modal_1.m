@@ -72,7 +72,7 @@ figure
 for n = 1 : 40 : N_time
     plot(x, f(n,:),'LineWidth',5)
     ylim([-1 1])
-    setplt('Temperaturverteilung','$x$','$f$','TV_homo_modal_1',0)
+    setplt('','$x$','$f$','TV_homo_modal_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
     TEXT = text(8,0.5,txt,'FontSize',60);
@@ -96,7 +96,7 @@ end
 figure
 [X, Y] = meshgrid(x, t);
 mesh(X,Y,f)
-setmesh('Temperaturverteilung','$x$','$t$','$f$','TV_homo_modal_Ttx_1',printfigure)
+setmesh('','$x$','$t$','$f$','TV_homo_modal_Ttx_1',printfigure)
 
 
 % f_modal_homo_1 = f;

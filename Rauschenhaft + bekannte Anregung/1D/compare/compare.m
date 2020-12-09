@@ -21,11 +21,11 @@ f5 = f_rh_scr_kf_fdm_integrated_iterativ_2;
 
 
 NAME = 'comapre noisy signal';
-l1 = 'KF 12';
-l3 = 'KF 24';
-l2 = 'rsKF 12';
-l4 = 'KFCS 12';
-l5 = 'KFCS iterativ 12';
+l1 = 'KF mit 12 Sensoren';
+l3 = 'KF mit 24 Sensoren';
+l2 = 'rsKF mit 12 Messungen';
+l4 = 'KFCS mit 12 Messungen';
+l5 = 'KFCS iterativ mit 12 Messungen';
 
 
 
@@ -84,4 +84,6 @@ hold on
 plot(t,ones(length(t))*mean_error_5,'m-.','LineWidth',2)
 hold on
 legend(l1,l2,l4,l5)
-setplt('Fehler','$t$','Fehler',[NAME,' error'],printfigure)
+setplt('','$t$','$\epsilon$',[NAME,' error'],printfigure)
+
+close all

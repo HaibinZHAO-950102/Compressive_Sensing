@@ -29,20 +29,26 @@ end
 
 surf(E_KF)
 xticks(2:2:10)
-yticks(2:2:10)
-yticklabels({'0.002','0.004','0.006','0.008','0.01'})
+yticks(2:4:10)
+zticks([0 0.04 0.08])
+zticklabels({'0','0.04','0.08'})
+yticklabels({'0.002','0.006','0.01'})
 xticklabels({'0.02','0.04','0.06','0.08','0.1'})
-setmesh('Fehler','$\sigma_M$','$\sigma_S$','Fehler','error_kf',1)
+zlim([0 0.08])
+setmesh('','$\sigma_M$','$\sigma_S$','$\epsilon_{\rm KF}$','error_kf',1)
 
 
 figure
 
 surf(E_KFCS)
 xticks(2:2:10)
-yticks(2:2:10)
-yticklabels({'0.002','0.004','0.006','0.008','0.01'})
+yticks(2:4:10)
+zticks([0 0.04 0.08])
+zticklabels({'0','0.04','0.08'})
+yticklabels({'0.002','0.006','0.01'})
 xticklabels({'0.02','0.04','0.06','0.08','0.1'})
-setmesh('Fehler','$\sigma_M$','$\sigma_S$','Fehler','error_kfcs',1)
+zlim([0 0.08])
+setmesh('','$\sigma_M$','$\sigma_S$','$\epsilon_{\rm KFCS}$','error_kfcs',1)
 
 
 E = E_KF - E_KFCS;
@@ -51,10 +57,10 @@ figure
 
 surf(E)
 xticks(2:2:10)
-yticks(2:2:10)
-yticklabels({'0.002','0.004','0.006','0.008','0.01'})
+yticks(2:4:10)
+yticklabels({'0.002','0.006','0.01'})
 xticklabels({'0.02','0.04','0.06','0.08','0.1'})
-setmesh('Differenzfehler','$\sigma_M$','$\sigma_S$','Fehler','error_difference',1)
+setmesh('','$\sigma_M$','$\sigma_S$','$\Delta \epsilon$','error_difference',1)
 
 
 
@@ -69,10 +75,11 @@ plot(E(7,2:end),'linewidth',5)
 hold on
 plot(zeros(1,9),'k--','linewidth',3)
 hold on
-
+xlim([2 10])
 xticks(2:2:10)
 xticklabels({'0.01','0.03','0.05','0.07','0.09'})
 legend('\sigma_S = 0.001','\sigma_S = 0.003','\sigma_S = 0.005','\sigma_S = 0.007')
-setplt('Differenzfehler','$\sigma_M$','Fehler','error_line',1)
+setplt('','$\sigma_M$','$\Delta \epsilon$','error_line',1)
 
 
+close all

@@ -61,7 +61,7 @@ for n = 1 : 1 : N_time
     plot(x, f(n,:),'LineWidth',5)
     ylim([0 1])
     xlim([0 10])
-    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
+    setplt('','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
     T = text(1,0.8,txt,'FontSize',60);
@@ -82,7 +82,7 @@ end
 figure
 [X, Y] = meshgrid(x, t);
 mesh(X,Y,f)
-setmesh('Temperaturverteilung','$x$','$t$','$f$','TV_homo_fdm_Ttx_2',printfigure)
+setmesh('','$x$','$t$','$f$','TV_homo_fdm_Ttx_2',printfigure)
     
 
 % f_fdm_homo_2 = f;

@@ -59,7 +59,7 @@ set(T,'Interpreter','latex')
 txt = ['$K = 10$'];
 T = text(0.8,0.4,txt,'FontSize',60);
 set(T,'Interpreter','latex')
-setplt('Temperaturverteilung','$x$','$f$','K-term Approximation WT',printfigure)
+setplt('','$x$','$f$','K-term Approximation WT',printfigure)
 
 M = 12;
 S = zeros(1,M);
@@ -108,6 +108,6 @@ T = text(0.8,0.8,txt,'FontSize',60);
 set(T,'Interpreter','latex')
 xlim([0 10])
 ylim([0 2])
-setplt('Rekonstruiertes Signal aus CS','$x$','$f$','Recovered Signal by CS WT',printfigure)
+setplt('','$x$','$f$','Recovered Signal by CS WT',printfigure)
 
 close all

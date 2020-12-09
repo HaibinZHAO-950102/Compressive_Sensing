@@ -56,7 +56,7 @@ for n = 0 : 10
     imind=frame2im(frame);
     [imind,cm] = rgb2ind(imind,256);
     name = ['RS_M_shot_',num2str(n+1)];
-    setplt('Temperaturverteilung','$x$','$f$',name,printfigure)
+    setplt('','$x$','$f$',name,printfigure)
 end
 
 for n = 0 : 10
@@ -82,7 +82,7 @@ for n = 0 : 10
     imind=frame2im(frame);
     [imind,cm] = rgb2ind(imind,256);
     name = ['RS_shot_',num2str(n+1)];
-    setplt('Temperaturverteilung','$x$','$f$',name,printfigure)
+    setplt('','$x$','$f$',name,printfigure)
 end
 
 close all

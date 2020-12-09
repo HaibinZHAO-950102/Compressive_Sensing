@@ -113,6 +113,10 @@ for n = 1 : N_time
     TEXT = text(8,0,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     caxis([-1 1])
+    xticks(0:5:10)
+    yticks(0:5:20)
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);
@@ -137,6 +141,11 @@ for n = 1 : 6
     TEXT = text(8,0,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     caxis([-1 1])
+    xticks(0:5:10)
+    yticks(0:5:20)
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
+
     drawnow
     name = ['T_2D_homo_fdm_shot_',num2str(n)];
     setmesh('','$x$','$y$','$f$',name,printfigure)

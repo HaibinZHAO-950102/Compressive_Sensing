@@ -109,11 +109,15 @@ for n = 1 : N_time
     zlim([0 2.5])
     caxis([0 2.5])
     pbaspect([1 Length_y/Length_x 0.5])
-    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_inhomo_fdm_1',0)
+    setmesh('','$x$','$y$','$f$','T_2D_inhomo_fdm_1',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
     TEXT = text(8,0,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);
@@ -139,6 +143,10 @@ for n = 1 : 6
     txt = ['$t = ',num2str(t(a)),'$'];
     TEXT = text(8,0,0.6,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
     drawnow
     name = ['T_2D_inhomo_fdm_1_shot_',num2str(n)];
     setmesh('','$x$','$y$','$f$',name,printfigure)

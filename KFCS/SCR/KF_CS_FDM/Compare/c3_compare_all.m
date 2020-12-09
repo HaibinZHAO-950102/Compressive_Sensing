@@ -23,12 +23,12 @@ f4 = f_e_kalman_fdm_1D_40;
 
 
 NAME = 'comapre all';
-l2 = 'rsKF 12';
-l5 = 'iteratives KFCS 12';
-l1 = 'KF 12';
-l6 = 'KF 64';
-l4 = 'KF 40';
-l3 = 'KFCS 12';
+l2 = 'rsKF mit 12 Messungen';
+l5 = 'iteratives KFCS mit 12 Messungen';
+l1 = 'KF mit 12 Sensoren';
+l6 = 'KF mit 64 Sensoren';
+l4 = 'KF mit 40 Sensoren';
+l3 = 'KFCS mit 12 Messingen';
 
 
 
@@ -95,4 +95,6 @@ hold on
 plot(t,ones(length(t))*mean_error_6,'m-.','LineWidth',2)
 hold on
 legend(l1,l2,l3,l4,l5,l6)
-setplt('Fehler','$t$','Fehler',[NAME,' error'],printfigure)
+setplt('','$t$','$\epsilon$',[NAME,' error'],printfigure)
+
+close all

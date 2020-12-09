@@ -222,7 +222,7 @@ set(figure19,'color',[255,0,255]/255);
 
 legend(l1,l3,l5,l7,l9)
 ylim([0 0.005])
-setplt('Fehler','$t$','Fehler',[NAME,' error'],printfigure)
+setplt('','$t$','$\epsilon$',[NAME,' error'],printfigure)
 
 MEANERROR = [mean_error_1,mean_error_2,mean_error_3,mean_error_4...
     ,mean_error_5,mean_error_6,mean_error_7,mean_error_8,mean_error_9...
@@ -232,6 +232,9 @@ figure
 plot(0:9,MEANERROR,'b-','linewidth',3)
 hold on
 plot(0:9,MEANERROR,'r.','markersize',40)
-setplt('Durchschnittlicher Fehler','$log_{10}{G2/G1}$','Fehler','mean_error_g2g1',printfigure)
+xlim([0 9])
+setplt('','$log_{10}{G2/G1}$','$\bar{\epsilon}$','mean_error_g2g1',printfigure)
+    xticks(0:1:9)
+    xticklabels({'0','1','2','3','4','5','6','7','8','9'})
 
 close all

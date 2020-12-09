@@ -109,8 +109,12 @@ figure
 for n = 1 : 5 : N_time
     mesh(X,Y,squeeze(f(n,:,:)))
     zlim([-1.5 1.5])
+    xticks(0:5:10)
+    yticks(0:5:20)
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
     pbaspect([1 Length_y/Length_x 0.5])
-    setmesh('Temperaturverteilung','$x$','$y$','$f$','T_2D_homo_modal',0)
+    setmesh('','$x$','$y$','$f$','T_2D_homo_modal',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*step_time),'$'];
     TEXT = text(8,0,0.5,txt,'FontSize',60);
@@ -119,6 +123,7 @@ for n = 1 : 5 : N_time
     TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
     caxis([-1 1])
+    
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);
@@ -146,6 +151,10 @@ for n = 1 : 6
     txt = ['$G = ',num2str(N),'$'];
     TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
     drawnow
     name = ['T_2D_homo_modal_shot_',num2str(n)];
     setmesh('','$x$','$y$','$f$',name,printfigure)

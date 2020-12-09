@@ -26,10 +26,10 @@ hold on
 plot(x,y1_1,'b-','LineWidth',5)
 hold on
 plot(x,y2_1,'r-','LineWidth',5)
-legend('Data','L1-Norm','L2-Norm')
+legend('Daten','L1-Norm','L2-Norm')
 xlim([0 10])
 ylim([0 20])
-setplt('lineare Approximation 1','$x$','$y$','Data_Fitting_1',printfigure)
+setplt('','$x$','$y$','Data_Fitting_1',printfigure)
 
 xd_2 = [xd_1 ; 1 ; 9];
 yd_2 = [yd_1 ; 18 ; 2];
@@ -49,9 +49,9 @@ hold on
 plot(x,y1_2,'b-','LineWidth',5)
 hold on
 plot(x,y2_2,'r-','LineWidth',5)
-legend('Data','L1-Norm','L2-Norm')
+legend('Daten','L1-Norm','L2-Norm')
 xlim([0 10])
 ylim([0 20])
-setplt('lineare Approximation 2','$x$','$y$','Data_Fitting_2',printfigure)
+setplt('','$x$','$y$','Data_Fitting_2',printfigure)
 
 close all

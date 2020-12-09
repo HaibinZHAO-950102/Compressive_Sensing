@@ -74,7 +74,7 @@ plot(t,ones(length(t))*mean_error_3,'c-.','LineWidth',2)
 hold on
 plot(t,ones(length(t))*mean_error_4,'k-.','LineWidth',2)
 legend(l1,l2,l3,l4)
-setplt('Fehler','$t$','Fehler',[NAME,' error'],printfigure)
+setplt('','$t$','$\epsilon$',[NAME,' error'],printfigure)
 
 close all
 

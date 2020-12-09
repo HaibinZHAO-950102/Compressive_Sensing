@@ -6,7 +6,7 @@ printfigure = 1;
 
 load('Messwerte')
 
-N = 36;  % Anzahl der Messungen
+N = 12;  % Anzahl der Messungen
 Dt = 0.1; % time_step
 
 S = round(linspace(1,64,N));  % benutzte Sensoren
@@ -82,11 +82,11 @@ for n = 1 : 0.5/Dt : N_time
     hold on
     plot(x, f_e(n,:),'c-','LineWidth',5)
     hold on
-    plot(p(S),m(:,n),'r.','Markersize',40)
+    plot(p(S),m(:,n),'r.','Markersize',60)
     legend('Signal','geschätztes Signal','Messungen')
     xlim([0 10])
     ylim([-0.5 2.5])
-    setplt('Temperaturverteilung','$x$','$f$','Temperature Distribution',0)
+    setplt('','$x$','$f$','Temperature Distribution',0)
     set(gcf,'outerposition',get(0,'screensize'));
     txt = ['$t = ',num2str((n-1)*Dt),'$'];
     T = text(0.8,0.4,txt,'FontSize',60);
@@ -117,7 +117,7 @@ for n = 0 : 5
     hold on
     plot(x, f_e(timefe,:),'c-','LineWidth',5)
     hold on
-    plot(p(S),m(:,timefe),'r.','Markersize',40)
+    plot(p(S),m(:,timefe),'r.','Markersize',60)
     legend('Signal','geschätztes Signal','Messungen')
 
     xlim([0 10])

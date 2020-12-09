@@ -147,7 +147,7 @@ for n = 1 : 0.5/Dt : nt
     ylim([-0.5 2.5])
     set(gca,'Fontsize',20)
     set(gca,'fontname','times new Roman')
-    z = title('Temperaturverteilung','fontsize',40);
+    z = title('','fontsize',40);
     set(z,'Interpreter','latex')
     z = xlabel('$x$','fontsize',30);
     set(z,'Interpreter','latex')
@@ -157,6 +157,12 @@ for n = 1 : 0.5/Dt : nt
     txt = ['$t = ',num2str((n-1)*Dt),'$'];
     z = text(0.8,0.6,txt,'FontSize',30);
     set(z,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    zticks([-1 1 3])
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
+    zticklabels({'-1','1','3'})
     drawnow
     frame=getframe(gcf);
     imind=frame2im(frame);
@@ -222,6 +228,12 @@ for n = 0 : 5
     txt = ['$M = 25$'];
     TEXT = text(8,0,1.8,txt,'FontSize',60);
     set(TEXT,'Interpreter','latex')
+    xticks(0:5:10)
+    yticks(0:5:20)
+    zticks([-1 1 3])
+    xticklabels({'0','5','10'})
+    yticklabels({'0','5','10','15','20'})
+    zticklabels({'-1','1','3'})
     drawnow
     name = ['T_2D_KFCS_shot_',num2str(n)];
     setmesh('','$x$','$y$','$f$',name,printfigure)
