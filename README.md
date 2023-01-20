@@ -11,8 +11,6 @@ This work is summarized in
   booktitle={2021 IEEE International Conference on Multisensor Fusion and Integration for Intelligent Systems (MFI)}, 
   title={Kalman Filtered Compressive Sensing Using Pseudo-Measurements}, 
   year={2021},
-  volume={},
-  number={},
   pages={1-8},
   doi={10.1109/MFI52462.2021.9591186}}
 ```
