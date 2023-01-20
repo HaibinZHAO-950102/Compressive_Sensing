@@ -6,7 +6,7 @@ Master Thesis: State Estimation Using Few Measurements by Combining Kalman Filte
 This work is summarized in
 
 ```
-@INPROCEEDINGS{9591186,
+@INPROCEEDINGS{KFCSUPM,
   author={Zhao, Haibin and Funk, Christopher and Noack, Benjamin and Hanebeck, Uwe and Beigl, Michael},
   booktitle={2021 IEEE International Conference on Multisensor Fusion and Integration for Intelligent Systems (MFI)}, 
   title={Kalman Filtered Compressive Sensing Using Pseudo-Measurements}, 
