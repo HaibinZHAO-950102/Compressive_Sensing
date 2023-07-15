@@ -15,7 +15,7 @@ This work is summarized in
   doi={10.1109/MFI52462.2021.9591186}}
 ```
 
-The original master thesis can be found at [KITOpen](https://doi.org/10.5445/IR/1000158992) with BibTeX
+The original master thesis can be found at <a href="https://doi.org/10.5445/IR/1000158992" target="_blank">KITOpen</a> with BibTeX
 
 ```
 @mastersthesis{Zhao2020_1000158992,
