@@ -14,3 +14,19 @@ This work is summarized in
   pages={1-8},
   doi={10.1109/MFI52462.2021.9591186}}
 ```
+
+The original master thesis can be found at [KITOpen](https://doi.org/10.5445/IR/1000158992) with BibTeX
+
+```
+@mastersthesis{Zhao2020_1000158992,
+    author       = {Zhao, Haibin},
+    year         = {2020},
+    title        = {Zustandsrekonstruktion mit wenigen Messungen durch Kombination von Kalman-Filterung und Compressive-Sensing},
+    doi          = {10.5445/IR/1000158992},
+    publisher    = {{Karlsruher Institut f{\"{u}}r Technologie (KIT)}},
+    keywords     = {Kalman-Filterung, Compressive-Sensing, Pseudo-Messungen},
+    pagetotal    = {87},
+    school       = {Karlsruher Institut für Technologie (KIT)},
+    language     = {german}
+}
+```
